@@ -6,6 +6,7 @@ export { default as FoodScheduler} from './FoodScheduler';
 export { default as FamilyRecipes} from './FamilyRecipes';
 export { default as Planner } from './Planner';
 export { default as Scheudler } from './Scheduler';
+export { default as SubscriptionManagement } from './SubscriptionManagement';
 
 export { default as Area } from './Charts/Area';
 export { default as Bar } from './Charts/Bar';
