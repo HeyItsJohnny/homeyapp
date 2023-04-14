@@ -4,7 +4,7 @@ import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
-import { links } from "../data/dummy";
+import { links } from "../components/Links";
 
 const Sidebar = () => {
   const activeMenu = true;
@@ -42,7 +42,7 @@ const Sidebar = () => {
                 <p className="text-gray-400 m-3 mt-4 uppercase">{item.title}</p>
                 {item.links.map((link) => (
                   <NavLink
-                    to={`${link.name}`}
+                    to={`${link.linktoname}`}
                     key={link.name}
                     onClick={() => {}}
                     className={({ isActive }) =>

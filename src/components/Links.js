@@ -36,7 +36,7 @@ export const links = [
       {
         name: "dashboard",
         icon: <GoDashboard />,
-        link: "dashboard"
+        linktoname: "dashboard"
       },
     ],
   },
@@ -46,15 +46,16 @@ export const links = [
       {
         name: "schedule",
         icon: <AiOutlineShoppingCart />,
-        link: "food-scheduler"
+        linktoname: "food-scheduler"
       },
       {
         name: "recipes",
         icon: <IoMdContacts />,
-        link: "family-recipes"
+        linktoname: "family-recipes"
       }
     ],
   },
+  /*
   {
     title: "Apps",
     links: [
@@ -114,4 +115,5 @@ export const links = [
       },
     ],
   },
+  */
 ];
