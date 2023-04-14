@@ -8,8 +8,10 @@ import { Dashboard, Calendar, Chores, ColorPicker, FamilyMembers, FamilyRecipes,
 
 import "./App.css";
 
+import { useStateContext } from "./contexts/ContextProvider";
+
 function App() {
-  const activeMenu = true;
+  const { activeMenu } = useStateContext();
   //const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
 
   return (
