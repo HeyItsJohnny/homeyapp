@@ -3,10 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
+import { Navbar, Footer, Sidebar, ThemeSettings } from './components'
+import { Dashboard, Calendar, Chores, ColorPicker, FamilyMembers, FamilyRecipes, FoodScheduler, Planner, Scheduler, SubscriptionPasswords, Line, Bar, Pie } from './pages'
+
 import "./App.css";
 
 function App() {
-  const activeMenu = false;
+  const activeMenu = true;
   //const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
 
   return (
@@ -26,46 +29,43 @@ function App() {
           </div>
           {activeMenu ? (
             <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white">
-              Sidebar
+              <Sidebar />
             </div>
           ) : (
-            <div className="w-0 dark:bg-secondary-dark-bg">Sidebar</div>
+            <div className="w-0 dark:bg-secondary-dark-bg">
+              <Sidebar />
+            </div>
           )}
           <div
             className={`dark:bg-main-bg bg-main-bg 
           min-h-screen w-full ${activeMenu ? "md:ml-72" : "flex-2"}`}
           >
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
-              Navbar
+              <Navbar />
             </div>
           </div>
 
           <div>
             <Routes>
               {/* DASHBOARD */}
-              <Route path="/" element="ECommerce" />
-              <Route path="/ecommerce" element="ECommerce" />
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
 
-              {/* PAGES */}
-              <Route path="/orders" element="Orders" />
-              <Route path="/employees" element="Employees" />
-              <Route path="/customers" element="Customers" />
-
-              {/* APPS */}
-              <Route path="/kanban" element="Kanban" />
-              <Route path="/editor" element="Editor" />
-              <Route path="/calendar" element="Calendar" />
-              <Route path="/color-picker" element="ColorPicker" />
+              {/* PAGES & APPS */}
+              <Route path="/calendar" element={<Calendar />} />
+              <Route path="/chores" element={<Chores />} />
+              <Route path="/color-picker" element={<ColorPicker />} />
+              <Route path="/family-members" element={<FamilyMembers />} />
+              <Route path="/family-recipes" element={<FamilyRecipes />} />
+              <Route path="/food-scheduler" element={<FoodScheduler />} />
+              <Route path="/planner" element={<Planner />} />
+              <Route path="/scheduler" element={<Scheduler />} />
+              <Route path="/subscription-passwords" element={<SubscriptionPasswords />} />
 
               {/* CHARTS */}
-              <Route path="/line" element="Line" />
-              <Route path="/area" element="Area" />
-              <Route path="/bar" element="Bar" />
-              <Route path="/pie" element="Pie" />
-              <Route path="/financial" element="Financial" />
-              <Route path="/color-mapping" element="ColorMapping" />
-              <Route path="/pyramid" element="Pyramid" />
-              <Route path="/stacked" element="Stacked" />
+              <Route path="/line" element={<Line />} />
+              <Route path="/bar" element={<Bar />} />
+              <Route path="/pie" element={<Pie />} />
 
             </Routes>
           </div>
