@@ -4,7 +4,7 @@ import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from './components'
-import { Dashboard, Calendar, Chores, ColorPicker, FamilyMembers, FamilyRecipes, FoodScheduler, Planner, Scheduler, SubscriptionPasswords, Line, Bar, Pie } from './pages'
+import { Dashboard, Calendar, Chores, ColorPicker, FamilyMembers, FamilyRecipes, FoodScheduler, Planner, Scheduler, SharedLogins, Line, Bar, Pie } from './pages'
 
 import "./App.css";
 
@@ -60,7 +60,7 @@ function App() {
               <Route path="/food-scheduler" element={<FoodScheduler />} />
               <Route path="/planner" element={<Planner />} />
               <Route path="/scheduler" element={<Scheduler />} />
-              <Route path="/subscription-passwords" element={<SubscriptionPasswords />} />
+              <Route path="/shared-logins" element={<SharedLogins />} />
 
               {/* CHARTS */}
               <Route path="/line" element={<Line />} />

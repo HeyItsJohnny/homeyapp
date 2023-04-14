@@ -1,33 +1,15 @@
 import React from "react";
 import {
   AiOutlineCalendar,
-  AiOutlineShoppingCart,
-  AiOutlineAreaChart,
-  AiOutlineBarChart,
-  AiOutlineStock,
 } from "react-icons/ai";
-import {
-  FiShoppingBag,
-  FiEdit,
-  FiPieChart,
-  FiBarChart,
-  FiCreditCard,
-  FiStar,
-  FiShoppingCart,
-} from "react-icons/fi";
-import {
-  BsKanban,
-  BsBarChart,
-  BsBoxSeam,
-  BsCurrencyDollar,
-  BsShield,
-  BsChatLeft,
-} from "react-icons/bs";
 import { BiColorFill } from "react-icons/bi";
+import { BsCalendarCheck } from "react-icons/bs";
 import { IoMdContacts } from "react-icons/io";
-import { RiContactsLine, RiStockLine } from "react-icons/ri";
-import { GiLouvrePyramid } from "react-icons/gi";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { GrSchedules } from "react-icons/gr";
 import { GoDashboard } from "react-icons/go";
+import { BiFoodMenu } from "react-icons/bi";
+import { MdFoodBank, MdCleaningServices } from "react-icons/md";
 
 export const links = [
   {
@@ -41,17 +23,62 @@ export const links = [
     ],
   },
   {
-    title: "Food",
+    title: "Apps",
+    links: [
+      {
+        name: "chores",
+        icon: <MdCleaningServices />,
+        linktoname: "chores"
+      },
+      {
+        name: "calendar",
+        icon: <AiOutlineCalendar />,
+        linktoname: "calendar"
+      },
+      {
+        name: "planner",
+        icon: <BsCalendarCheck />,
+        linktoname: "planner"
+      },
+      {
+        name: "scheduler",
+        icon: <GrSchedules />,
+        linktoname: "scheduler"
+      }
+    ],
+  },
+  {
+    title: "Meals",
     links: [
       {
         name: "schedule",
-        icon: <AiOutlineShoppingCart />,
+        icon: <BiFoodMenu />,
         linktoname: "food-scheduler"
       },
       {
         name: "recipes",
-        icon: <IoMdContacts />,
+        icon: <MdFoodBank />,
         linktoname: "family-recipes"
+      }
+    ],
+  },
+  {
+    title: "Settings",
+    links: [
+      {
+        name: "family members",
+        icon: <IoMdContacts/>,
+        linktoname: "family-members"
+      },
+      {
+        name: "shared logins",
+        icon: <RiLockPasswordLine />,
+        linktoname: "subscription-passwords"
+      },
+      {
+        name: "color picker",
+        icon: <BiColorFill />,
+        linktoname: "color-picker"
       }
     ],
   },
