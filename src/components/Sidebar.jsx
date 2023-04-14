@@ -30,7 +30,7 @@ const Sidebar = () => {
               <button
                 type="button"
                 onClick={() => {}}
-                className="text-xl rounded-full p-3 hover:bg-light-grey mt-4 blockmd:hidden"
+                className="text-xl rounded-full p-3 hover:bg-light-gray mt-4 blockmd:hidden"
               >
                 <MdOutlineCancel />
               </button>
