@@ -8,6 +8,7 @@ export { default as FamilyRecipes} from './FamilyRecipes';
 export { default as Planner } from './Planner';
 export { default as Scheduler } from './Scheduler';
 export { default as SharedLogins } from './SharedLogins';
+export { default as Ecommerce } from './Ecommerce';
 
 export { default as Area } from './Charts/Area';
 export { default as Bar } from './Charts/Bar';

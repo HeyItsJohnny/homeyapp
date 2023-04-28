@@ -3,8 +3,23 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
-import { Navbar, Footer, Sidebar, ThemeSettings } from './components'
-import { Dashboard, Calendar, Chores, ColorPicker, FamilyMembers, FamilyRecipes, FoodScheduler, Planner, Scheduler, SharedLogins, Line, Bar, Pie } from './pages'
+import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
+import {
+  Dashboard,
+  Calendar,
+  Chores,
+  Ecommerce,
+  ColorPicker,
+  FamilyMembers,
+  FamilyRecipes,
+  FoodScheduler,
+  Planner,
+  Scheduler,
+  SharedLogins,
+  Line,
+  Bar,
+  Pie,
+} from "./pages";
 
 import "./App.css";
 
@@ -45,31 +60,33 @@ function App() {
             <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
               <Navbar />
             </div>
-          </div>
 
-          <div>
-            <Routes>
-              {/* DASHBOARD */}
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+            <div>
+              <Routes>
+                {/* DASHBOARD */}
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/dashboard" element={<Dashboard />} />
 
-              {/* PAGES & APPS */}
-              <Route path="/calendar" element={<Calendar />} />
-              <Route path="/chores" element={<Chores />} />
-              <Route path="/color-picker" element={<ColorPicker />} />
-              <Route path="/family-members" element={<FamilyMembers />} />
-              <Route path="/family-recipes" element={<FamilyRecipes />} />
-              <Route path="/food-scheduler" element={<FoodScheduler />} />
-              <Route path="/planner" element={<Planner />} />
-              <Route path="/scheduler" element={<Scheduler />} />
-              <Route path="/shared-logins" element={<SharedLogins />} />
+                {/* SAMPLE */}
+                <Route path="/ecommerce" element={<Ecommerce />} />
 
-              {/* CHARTS */}
-              <Route path="/line" element={<Line />} />
-              <Route path="/bar" element={<Bar />} />
-              <Route path="/pie" element={<Pie />} />
+                {/* PAGES & APPS */}
+                <Route path="/calendar" element={<Calendar />} />
+                <Route path="/chores" element={<Chores />} />
+                <Route path="/color-picker" element={<ColorPicker />} />
+                <Route path="/family-members" element={<FamilyMembers />} />
+                <Route path="/family-recipes" element={<FamilyRecipes />} />
+                <Route path="/food-scheduler" element={<FoodScheduler />} />
+                <Route path="/planner" element={<Planner />} />
+                <Route path="/scheduler" element={<Scheduler />} />
+                <Route path="/shared-logins" element={<SharedLogins />} />
 
-            </Routes>
+                {/* CHARTS */}
+                <Route path="/line" element={<Line />} />
+                <Route path="/bar" element={<Bar />} />
+                <Route path="/pie" element={<Pie />} />
+              </Routes>
+            </div>
           </div>
         </div>
       </BrowserRouter>

@@ -16,6 +16,11 @@ export const links = [
     title: "Home",
     links: [
       {
+        name: "Ecommerce - Sample",
+        icon: <GoDashboard />,
+        linktoname: "ecommerce"
+      },
+      {
         name: "dashboard",
         icon: <GoDashboard />,
         linktoname: "dashboard"
@@ -73,7 +78,7 @@ export const links = [
       {
         name: "shared logins",
         icon: <RiLockPasswordLine />,
-        linktoname: "subscription-passwords"
+        linktoname: "shared-logins"
       },
       {
         name: "color picker",
