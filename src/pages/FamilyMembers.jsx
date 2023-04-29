@@ -11,8 +11,10 @@ import {
 
 //DATA
 import { employeesData, contextMenuItems, employeesGrid } from "../data/dummy";
-
+import { familyMembersGrid } from "../data/gridData";
 import { Header } from "../components";
+
+import { db } from "../firebase/firebase";
 
 const FamilyMembers = () => {
   return (
@@ -20,14 +22,14 @@ const FamilyMembers = () => {
       <Header category="Settings" title="Family Members" />
       <GridComponent
         id="gridcomp"
-        dataSource={employeesData}
+        //dataSource={employeesData}
         allowPaging
         allowSorting
         toolbar={['Search']}
         width="auto"
       >
         <ColumnsDirective>
-          {employeesGrid.map((item,index) => (
+          {familyMembersGrid.map((item,index) => (
             <ColumnDirective key={index} {...item} />
           ))}
         </ColumnsDirective>
