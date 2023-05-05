@@ -6,6 +6,7 @@ import {
   Page,
   Search,
   Inject,
+  Edit,
   Toolbar
 } from "@syncfusion/ej2-react-grids";
 
@@ -50,7 +51,7 @@ const FamilyMembers = () => {
         dataSource={familyMembers}
         allowPaging
         allowSorting
-        toolbar={['Search']}
+        toolbar={['Add','Search']}
         width="auto"
       >
         <ColumnsDirective>
@@ -58,7 +59,7 @@ const FamilyMembers = () => {
             <ColumnDirective key={index} {...item} />
           ))}
         </ColumnsDirective>
-        <Inject services= {[Page, Search, Toolbar]}/>
+        <Inject services= {[Page, Search, Edit, Toolbar]}/>
       </GridComponent>
     </div>
   );
