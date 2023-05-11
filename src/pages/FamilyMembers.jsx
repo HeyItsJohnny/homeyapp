@@ -35,7 +35,6 @@ const FamilyMembers = () => {
         familyMembersList.push(familyMembersData);
       });
       setFamilyMembers(familyMembersList);
-      console.log(familyMembersList);
     });
   };
 
@@ -51,7 +50,8 @@ const FamilyMembers = () => {
         dataSource={familyMembers}
         allowPaging
         allowSorting
-        toolbar={['Add','Search']}
+        toolbar={['Add','Search','Edit', 'Delete', 'Update', 'Cancel']}
+        editSettings={{ allowDeleting: true, allowEditing: true, allowAdding: true}}
         width="auto"
       >
         <ColumnsDirective>
