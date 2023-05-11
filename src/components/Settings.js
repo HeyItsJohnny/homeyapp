@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  AiOutlineCalendar,
-} from "react-icons/ai";
+import { AiOutlineCalendar } from "react-icons/ai";
 import { BiColorFill } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
 import { IoMdContacts } from "react-icons/io";
@@ -18,12 +16,12 @@ export const links = [
       {
         name: "Ecommerce - Sample",
         icon: <GoDashboard />,
-        linktoname: "ecommerce"
+        linktoname: "ecommerce",
       },
       {
         name: "dashboard",
         icon: <GoDashboard />,
-        linktoname: "dashboard"
+        linktoname: "dashboard",
       },
     ],
   },
@@ -33,23 +31,23 @@ export const links = [
       {
         name: "chores",
         icon: <MdCleaningServices />,
-        linktoname: "chores"
+        linktoname: "chores",
       },
       {
         name: "calendar",
         icon: <AiOutlineCalendar />,
-        linktoname: "calendar"
+        linktoname: "calendar",
       },
       {
         name: "planner",
         icon: <BsCalendarCheck />,
-        linktoname: "planner"
+        linktoname: "planner",
       },
       {
         name: "scheduler",
         icon: <GrSchedules />,
-        linktoname: "scheduler"
-      }
+        linktoname: "scheduler",
+      },
     ],
   },
   {
@@ -58,13 +56,13 @@ export const links = [
       {
         name: "schedule",
         icon: <BiFoodMenu />,
-        linktoname: "food-scheduler"
+        linktoname: "food-scheduler",
       },
       {
         name: "recipes",
         icon: <MdFoodBank />,
-        linktoname: "family-recipes"
-      }
+        linktoname: "family-recipes",
+      },
     ],
   },
   {
@@ -72,19 +70,46 @@ export const links = [
     links: [
       {
         name: "family members",
-        icon: <IoMdContacts/>,
-        linktoname: "family-members"
+        icon: <IoMdContacts />,
+        linktoname: "family-members",
       },
       {
         name: "shared logins",
         icon: <RiLockPasswordLine />,
-        linktoname: "shared-logins"
+        linktoname: "shared-logins",
       },
       {
         name: "color picker",
         icon: <BiColorFill />,
-        linktoname: "color-picker"
-      }
+        linktoname: "color-picker",
+      },
     ],
+  },
+];
+
+export const themeColors = [
+  {
+    name: "blue-theme",
+    color: "#1A97F5",
+  },
+  {
+    name: "green-theme",
+    color: "#03C9D7",
+  },
+  {
+    name: "purple-theme",
+    color: "#7352FF",
+  },
+  {
+    name: "red-theme",
+    color: "#FF5C8E",
+  },
+  {
+    name: "indigo-theme",
+    color: "#1E4DB7",
+  },
+  {
+    color: "#FB9678",
+    name: "orange-theme",
   },
 ];

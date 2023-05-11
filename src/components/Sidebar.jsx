@@ -4,7 +4,7 @@ import { SiShopware } from "react-icons/si";
 import { MdOutlineCancel } from "react-icons/md";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
-import { links } from "../components/Links";
+import { links } from "../components/Settings";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
