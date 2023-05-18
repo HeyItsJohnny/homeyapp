@@ -2851,7 +2851,7 @@ export const scheduleData = [
     Location: 'Space Center USA',
     StartTime: '2021-01-10T04:00:00.000Z',
     EndTime: '2021-01-10T05:30:00.000Z',
-    CategoryColor: '#1aaa55',
+    EventColor: '#1aaa55',
   },
   {
     Id: 2,
@@ -2859,7 +2859,7 @@ export const scheduleData = [
     Location: 'Newyork City',
     StartTime: '2021-01-11T06:30:00.000Z',
     EndTime: '2021-01-11T08:30:00.000Z',
-    CategoryColor: '#357cd2',
+    EventColor: '#357cd2',
   },
   {
     Id: 3,
@@ -2867,7 +2867,7 @@ export const scheduleData = [
     Location: 'Space Center USA',
     StartTime: '2021-01-12T04:00:00.000Z',
     EndTime: '2021-01-12T05:30:00.000Z',
-    CategoryColor: '#7fa900',
+    EventColor: '#7fa900',
   },
   {
     Id: 4,
@@ -2875,7 +2875,7 @@ export const scheduleData = [
     Location: 'Space Center USA',
     StartTime: '2021-01-13T07:30:00.000Z',
     EndTime: '2021-01-13T09:00:00.000Z',
-    CategoryColor: '#ea7a57',
+    EventColor: '#ea7a57',
   },
   {
     Id: 5,
@@ -2883,7 +2883,7 @@ export const scheduleData = [
     Location: 'Space Center USA',
     StartTime: '2021-01-14T06:30:00.000Z',
     EndTime: '2021-01-14T08:30:00.000Z',
-    CategoryColor: '#00bdae',
+    EventColor: '#00bdae',
   },
   {
     Id: 6,
@@ -2891,7 +2891,7 @@ export const scheduleData = [
     Location: 'Bermuda',
     StartTime: '2021-01-14T04:00:00.000Z',
     EndTime: '2021-01-14T05:30:00.000Z',
-    CategoryColor: '#f57f17',
+    EventColor: '#f57f17',
   },
   {
     Id: 7,

@@ -31,26 +31,26 @@ const FamilyMembers = () => {
   const [familyMembers, setFamilyMembers] = useState([]);
 
   const fetchData = async () => {
-    const couponsCollection = query(
+    const docCollection = query(
       collection(db, "housemembers"),
       orderBy("Name")
     );
-    onSnapshot(couponsCollection, (querySnapshot) => {
-      const familyMembersList = [];
+    onSnapshot(docCollection, (querySnapshot) => {
+      const list = [];
       querySnapshot.forEach((doc) => {
-        var familyMembersData = {
+        var data = {
           id: doc.id,
           Name: doc.data().Name,
           Role: doc.data().Role,
         };
-        familyMembersList.push(familyMembersData);
+        list.push(data);
       });
-      setFamilyMembers(familyMembersList);
+      setFamilyMembers(list);
     });
   };
 
   const handleActionComplete = async (args) => {
-    //console.log(args);
+    console.log(args);
     if (args.requestType === "save" && args.action === "add") {
       //ADD data to Firestore
       const addedData = [...familyMembers];
