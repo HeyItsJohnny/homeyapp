@@ -36,18 +36,20 @@ const Calendar = () => {
     const docCollection = query(collection(db, "calendarevents"));
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
+      const IDLogger = 1;
       querySnapshot.forEach((doc) => {
         var data = {
-          //Id: doc.id,
+          Id: doc.id,
           Subject: doc.data().Subject,
-          //Location: doc.data().Location,
-          //Description: doc.data().Description,
-          StartTime: doc.data().StartTime,
-          EndTime: doc.data().EndTime,
-          //IsAllDay: doc.data().IsAllDay,
-          //RecurrenceRule: doc.data().RecurrenceRule,
-          //RecurrenceException: doc.data().RecurrenceException,
-          //CategoryColor: doc.data().CategoryColor,
+          Location: doc.data().Location,
+          Description: doc.data().Description,
+          StartTime: doc.data().StartTime.toDate(),
+          EndTime: doc.data().EndTime.toDate(),
+          IsAllDay: doc.data().IsAllDay,
+          RecurrenceRule: doc.data().RecurrenceRule,
+          RecurrenceException: doc.data().RecurrenceException,
+          CategoryColor: doc.data().CategoryColor,
+          EventColor: doc.data().EventColor,
         };
         list.push(data);
       });
@@ -56,60 +58,52 @@ const Calendar = () => {
   };
 
   const addEvent = async (args) => {
-    //const db = firebase.firestore();
-    console.log(args);
-    //const { startTime, endTime, subject, location, description } = args;
-
     if (args.requestType === "eventCreated") {
-      //console.log("Event ADDED");
-      //console.log("Subject: " + args.addedRecords[0].Subject);
-
-      //const addedData = [...calendarEvents];
-      //const addedRow = args.addedRecords[0];
-
-      //addedData.push(addedRow);
-      //setCalendarEvents(addedData);
-
       try {
         const docRef = await addDoc(collection(db, "calendarevents"), {
           Subject: args.addedRecords[0].Subject,
-          //Location: args.addedRecords[0].Location ?? "",
-          //Description: args.addedRecords[0].Description  ?? "",
-          StartTime: args.addedRecords[0].StartTime  ?? "",
+          Location: args.addedRecords[0].Location ?? "",
+          Description: args.addedRecords[0].Description ?? "",
+          StartTime: args.addedRecords[0].StartTime ?? "",
           EndTime: args.addedRecords[0].EndTime ?? "",
-          //IsAllDay: args.addedRecords[0].IsAllDay ?? "",
-          //RecurrenceRule: args.addedRecords[0].RecurrenceRule ?? "",
-          //RecurrenceException: args.addedRecords[0].RecurrenceException ?? "",
-          //CategoryColor: doc.data().CategoryColor,
+          IsAllDay: args.addedRecords[0].IsAllDay ?? "",
+          RecurrenceRule: args.addedRecords[0].RecurrenceRule ?? "",
+          RecurrenceException: args.addedRecords[0].RecurrenceException ?? "",
+          CategoryColor: args.addedRecords[0].CategoryColor ?? "",
+          EventColor: args.addedRecords[0].EventColor ?? "",
         });
       } catch (error) {
         alert("Error adding data to Database: " + error);
       }
-
     } else if (args.requestType === "eventChanged") {
-      console.log("Event Edited");
+      try {
+        const calendarEventsRef = doc(
+          db,
+          "calendarevents",
+          args.changedRecords[0].Id
+        );
+        await updateDoc(calendarEventsRef, {
+          Subject: args.changedRecords[0].Subject,
+          Location: args.changedRecords[0].Location ?? "",
+          Description: args.changedRecords[0].Description ?? "",
+          StartTime: args.changedRecords[0].StartTime ?? "",
+          EndTime: args.changedRecords[0].EndTime ?? "",
+          IsAllDay: args.changedRecords[0].IsAllDay ?? "",
+          RecurrenceRule: args.changedRecords[0].RecurrenceRule ?? "",
+          RecurrenceException: args.changedRecords[0].RecurrenceException ?? "",
+          CategoryColor: args.changedRecords[0].CategoryColor ?? "",
+          EventColor: args.changedRecords[0].EventColor ?? "",
+        });
+      } catch (error) {
+        alert("Error editing data to Database: " + error);
+      }
     } else if (args.requestType === "eventRemoved") {
-      console.log("Event Deleted");
+      try {
+        await deleteDoc(doc(db, "calendarevents", args.deletedRecords[0].Id));
+      } catch (error) {
+        alert("Error editing data to Database: " + error);
+      }
     }
-
-    /*
-    const newEvent = {
-      start: startTime,
-      end: endTime,
-      subject: subject,
-      location: location,
-      description: description,
-    };
-
-    db.collection("events")
-      .add(newEvent)
-      .then((docRef) => {
-        console.log("Event added with ID: ", docRef.id);
-      })
-      .catch((error) => {
-        console.error("Error adding event: ", error);
-      });
-      */
   };
 
   useEffect(() => {
@@ -123,9 +117,7 @@ const Calendar = () => {
         currentView="Week"
         height="650px"
         eventSettings={{ dataSource: calendarEvents }}
-        //popupOpen={addEvent}
         actionComplete={addEvent}
-        //selectedDate={new Date(2021, 0, 10)}
       >
         <Inject
           services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}
