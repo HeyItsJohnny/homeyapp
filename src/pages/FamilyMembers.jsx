@@ -11,7 +11,6 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { employeesData, contextMenuItems, employeesGrid } from "../data/dummy";
 import { familyMembersGrid } from "../data/gridData";
 import { Header } from "../components";
 

@@ -48,3 +48,8 @@ export const familyMembersGrid = [
   { field: "Name", headerText: "Name", width: "150", textAlign: "Center" },
   { field: "Role", headerText: "Role", width: "170", textAlign: "Center" },
 ];
+
+export const familyRecipesGrid = [
+  { field: "Recipe", headerText: "Recipe", width: "150", textAlign: "Center" },
+  { field: "ServingSize", headerText: "ServingSize", width: "170", textAlign: "Center" },
+];
