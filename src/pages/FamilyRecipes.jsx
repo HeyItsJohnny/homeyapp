@@ -68,7 +68,6 @@ const FamilyRecipes = () => {
       <div className="mb-10">
         <NewRecipeModal />
       </div>
-
       <GridComponent
         id="gridcomp"
         dataSource={familyRecipes}
