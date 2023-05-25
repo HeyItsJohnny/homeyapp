@@ -13,8 +13,7 @@ import {
 //DATA
 import { familyRecipesGrid } from "../data/gridData";
 import { Header } from "../components";
-import { useStateContext } from "../contexts/ContextProvider";
-import { Button } from "../components";
+import NewRecipeModal from "../modals/NewRecipeModal";
 
 import { db } from "../firebase/firebase";
 import {
@@ -22,20 +21,17 @@ import {
   query,
   onSnapshot,
   orderBy,
-  addDoc,
-  updateDoc,
   doc,
   deleteDoc,
 } from "firebase/firestore";
 
 const FamilyRecipes = () => {
-  const { currentColor } = useStateContext();
   const [familyRecipes, setFamilyRecipes] = useState([]);
 
   const fetchData = async () => {
     const docCollection = query(
       collection(db, "familyrecipes"),
-      orderBy("Name")
+      orderBy("FoodType")
     );
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
@@ -43,6 +39,7 @@ const FamilyRecipes = () => {
         var data = {
           id: doc.id,
           Recipe: doc.data().Recipe,
+          FoodType: doc.data().FoodType,
           ServingSize: doc.data().ServingSize,
         };
         list.push(data);
@@ -51,6 +48,16 @@ const FamilyRecipes = () => {
     });
   };
 
+  const handleActionComplete = async (args) => {
+    if (args.requestType === "delete") {
+      const deletedRow = args.data[0];
+      try {
+        await deleteDoc(doc(db, "familyrecipes", deletedRow.id));
+      } catch (error) {
+        alert("Error deleting data from Firestore:", error);
+      }
+    }
+  };
   useEffect(() => {
     fetchData();
   }, []);
@@ -58,19 +65,14 @@ const FamilyRecipes = () => {
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Meals" title="Recipes" />
-      <div className="mt-6">
-        <Button
-          color="white"
-          bgColor={currentColor}
-          text="Add Recipe"
-          borderRadius="10px"
-          size="md"
-        />
+      <div className="mb-10">
+        <NewRecipeModal />
       </div>
 
       <GridComponent
         id="gridcomp"
         dataSource={familyRecipes}
+        actionComplete={handleActionComplete}
         allowPaging
         allowSorting
         toolbar={["Search", "Delete"]}

@@ -51,5 +51,6 @@ export const familyMembersGrid = [
 
 export const familyRecipesGrid = [
   { field: "Recipe", headerText: "Recipe", width: "150", textAlign: "Center" },
-  { field: "ServingSize", headerText: "ServingSize", width: "170", textAlign: "Center" },
+  { field: "FoodType", headerText: "Food Type", width: "170", textAlign: "Center" },
+  { field: "ServingSize", headerText: "Serving Size", width: "170", textAlign: "Center" },
 ];

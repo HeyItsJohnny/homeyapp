@@ -49,7 +49,6 @@ const FamilyMembers = () => {
   };
 
   const handleActionComplete = async (args) => {
-    console.log(args);
     if (args.requestType === "save" && args.action === "add") {
       //ADD data to Firestore
       const addedData = [...familyMembers];
@@ -96,7 +95,7 @@ const FamilyMembers = () => {
       try {
         await deleteDoc(doc(db, "housemembers", deletedRow.id));
       } catch (error) {
-        console.log("Error deleting data from Firestore:", error);
+        alert("Error deleting data from Firestore:", error);
       }
     }
   };
