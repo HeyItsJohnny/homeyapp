@@ -56,7 +56,7 @@ export const links = [
       {
         name: "schedule",
         icon: <BiFoodMenu />,
-        linktoname: "food-scheduler",
+        linktoname: "meal-scheduler",
       },
       {
         name: "recipes",

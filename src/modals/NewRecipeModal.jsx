@@ -98,6 +98,7 @@ const NewRecipeModal = () => {
                 <MenuItem value="Breakfast">Breakfast</MenuItem>
                 <MenuItem value="Lunch">Lunch</MenuItem>
                 <MenuItem value="Dinner">Dinner</MenuItem>
+                <MenuItem value="Lunch Or Dinner">Lunch or Dinner</MenuItem>
                 <MenuItem value="Snack">Snack</MenuItem>
                 <MenuItem value="Other">Other</MenuItem>
               </Select>

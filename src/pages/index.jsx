@@ -3,7 +3,7 @@ export { default as Calendar } from './Calendar';
 export { default as Chores } from './Chores';
 export { default as ColorPicker } from './ColorPicker';
 export { default as FamilyMembers } from './FamilyMembers';
-export { default as FoodScheduler} from './FoodScheduler';
+export { default as MealScheduler} from './MealScheduler';
 export { default as FamilyRecipes} from './FamilyRecipes';
 export { default as Planner } from './Planner';
 export { default as Scheduler } from './Scheduler';
