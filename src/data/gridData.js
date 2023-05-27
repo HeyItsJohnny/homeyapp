@@ -51,6 +51,31 @@ export const familyMembersGrid = [
 
 export const familyRecipesGrid = [
   { field: "Recipe", headerText: "Recipe", width: "150", textAlign: "Center" },
-  { field: "FoodType", headerText: "Food Type", width: "170", textAlign: "Center" },
-  { field: "ServingSize", headerText: "Serving Size", width: "170", textAlign: "Center" },
+  {
+    field: "FoodType",
+    headerText: "Food Type",
+    width: "170",
+    textAlign: "Center",
+  },
+  {
+    field: "ServingSize",
+    headerText: "Serving Size",
+    width: "170",
+    textAlign: "Center",
+  },
+];
+
+export const mealScheduleKanbanGrid = [
+  { headerText: "Monday", keyField: "Open", allowToggle: true },
+  { 
+    headerText: "Tuesday", keyField: "InProgress", allowToggle: true },
+
+  {
+    headerText: "Wednesday",
+    keyField: "Testing",
+    allowToggle: true,
+  },
+
+  { headerText: "Thursday", keyField: "Close", allowToggle: true },
+  { headerText: "Friday", keyField: "Friday", allowToggle: true },
 ];
