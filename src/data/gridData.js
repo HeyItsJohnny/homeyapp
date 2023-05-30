@@ -65,7 +65,7 @@ export const familyRecipesGrid = [
   },
 ];
 
-export const mealScheduleKanbanGrid = [
+export const weekdayMealScheduleKanbanGrid = [
   { headerText: "Monday", keyField: "Open", allowToggle: true },
   { 
     headerText: "Tuesday", keyField: "InProgress", allowToggle: true },
@@ -78,4 +78,10 @@ export const mealScheduleKanbanGrid = [
 
   { headerText: "Thursday", keyField: "Close", allowToggle: true },
   { headerText: "Friday", keyField: "Friday", allowToggle: true },
+];
+
+export const weekendMealScheduleKanbanGrid = [
+  { headerText: "Not Scheduled", keyField: "Open", allowToggle: true },
+  { headerText: "Saturday", keyField: "Close", allowToggle: true },
+  { headerText: "Sunday", keyField: "Friday", allowToggle: true },
 ];

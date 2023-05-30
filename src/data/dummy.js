@@ -3220,6 +3220,37 @@ export const stackedPrimaryYAxis = {
   labelFormat: '{value}',
 };
 
+export const sampleKanbanData = [
+  {
+    Id: '01',
+    Meal: 'Overnight Oats',
+    Description: 'For JJ',
+    DayOfWeek: 'Not Scheduled',
+    MealType: "Breakfast"
+  },
+  {
+    Id: '02',
+    Meal: 'Butter Croissants',
+    Description: 'For JJ',
+    DayOfWeek: 'Not Scheduled',
+    MealType: "Breakfast"
+  },
+  {
+    Id: '03',
+    Meal: 'Mac & Cheese',
+    Description: 'For JJ',
+    DayOfWeek: 'Not Scheduled',
+    MealType: "Lunch"
+  },
+  {
+    Id: '04',
+    Meal: 'Grilled Cheese',
+    Description: 'For JJ',
+    DayOfWeek: 'Not Scheduled',
+    MealType: "Dinner"
+  }
+];
+
 export const kanbanData = [
   {
     Id: 'Task 1',
