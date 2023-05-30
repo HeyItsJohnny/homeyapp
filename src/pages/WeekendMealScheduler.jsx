@@ -6,10 +6,10 @@ import {
 } from "@syncfusion/ej2-react-kanban";
 
 import { mealScheduleKanbanGrid } from "../data/gridData";
-import { kanbanData } from '../data/dummy';
+import { kanbanData } from "../data/dummy";
 import { Header } from "../components";
 
-const MealScheduler = () => {
+const WeekendMealScheduler = () => {
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Meals" title="Schedule" />
@@ -29,4 +29,4 @@ const MealScheduler = () => {
   );
 };
 
-export default MealScheduler;
+export default WeekendMealScheduler;
