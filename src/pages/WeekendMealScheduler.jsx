@@ -5,7 +5,6 @@ import {
   ColumnDirective,
 } from "@syncfusion/ej2-react-kanban";
 
-import { weekendMealScheduleKanbanGrid } from "../data/gridData";
 import { sampleKanbanData } from "../data/dummy";
 import { Header } from "../components";
 import WeekendMealResetModal from "../modals/WeekendMealResetModal";
