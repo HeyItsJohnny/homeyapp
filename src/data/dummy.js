@@ -3225,29 +3225,29 @@ export const sampleKanbanData = [
     Id: '01',
     Meal: 'Overnight Oats',
     Description: 'For JJ',
-    DayOfWeek: 'Not Scheduled',
-    MealType: "Breakfast"
+    DayOfWeek: 'Meals',
+    MealType: "1. Breakfast"
   },
   {
     Id: '02',
     Meal: 'Butter Croissants',
     Description: 'For JJ',
-    DayOfWeek: 'Not Scheduled',
-    MealType: "Breakfast"
+    DayOfWeek: 'Meals',
+    MealType: "1. Breakfast"
   },
   {
     Id: '03',
     Meal: 'Mac & Cheese',
     Description: 'For JJ',
-    DayOfWeek: 'Not Scheduled',
-    MealType: "Lunch"
+    DayOfWeek: 'Meals',
+    MealType: "2. Lunch"
   },
   {
     Id: '04',
     Meal: 'Grilled Cheese',
     Description: 'For JJ',
-    DayOfWeek: 'Not Scheduled',
-    MealType: "Dinner"
+    DayOfWeek: 'Meals',
+    MealType: "3. Dinner"
   }
 ];
 
