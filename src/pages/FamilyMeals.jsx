@@ -11,9 +11,9 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { familyRecipesGrid } from "../data/gridData";
+import { familyMealsGrid } from "../data/gridData";
 import { Header } from "../components";
-import NewRecipeModal from "../modals/NewRecipeModal";
+import NewMealModal from "../modals/NewMealModal";
 
 import { db } from "../firebase/firebase";
 import {
@@ -25,12 +25,12 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const FamilyRecipes = () => {
-  const [familyRecipes, setFamilyRecipes] = useState([]);
+const FamilyMeals = () => {
+  const [familyMeals, setFamilyMeals] = useState([]);
 
   const fetchData = async () => {
     const docCollection = query(
-      collection(db, "familyrecipes"),
+      collection(db, "familymeals"),
       orderBy("FoodType")
     );
     onSnapshot(docCollection, (querySnapshot) => {
@@ -44,7 +44,7 @@ const FamilyRecipes = () => {
         };
         list.push(data);
       });
-      setFamilyRecipes(list);
+      setFamilyMeals(list);
     });
   };
 
@@ -52,7 +52,7 @@ const FamilyRecipes = () => {
     if (args.requestType === "delete") {
       const deletedRow = args.data[0];
       try {
-        await deleteDoc(doc(db, "familyrecipes", deletedRow.id));
+        await deleteDoc(doc(db, "familymeals", deletedRow.id));
       } catch (error) {
         alert("Error deleting data from Firestore:", error);
       }
@@ -66,11 +66,11 @@ const FamilyRecipes = () => {
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Meals" title="Meal List" />
       <div className="mb-10">
-        <NewRecipeModal />
+        <NewMealModal />
       </div>
       <GridComponent
         id="gridcomp"
-        dataSource={familyRecipes}
+        dataSource={familyMeals}
         actionComplete={handleActionComplete}
         allowPaging
         allowSorting
@@ -81,7 +81,7 @@ const FamilyRecipes = () => {
         width="auto"
       >
         <ColumnsDirective>
-          {familyRecipesGrid.map((item, index) => (
+          {familyMealsGrid.map((item, index) => (
             <ColumnDirective key={item.id} {...item} />
           ))}
         </ColumnsDirective>
@@ -91,4 +91,4 @@ const FamilyRecipes = () => {
   );
 };
 
-export default FamilyRecipes;
+export default FamilyMeals;

@@ -61,7 +61,7 @@ export const links = [
       {
         name: "meal list",
         icon: <MdFoodBank />,
-        linktoname: "family-recipes",
+        linktoname: "family-meals",
       },
     ],
   },

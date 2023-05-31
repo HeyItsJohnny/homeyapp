@@ -13,7 +13,7 @@ import Select from "@mui/material/Select";
 import { db } from "../firebase/firebase";
 import { addDoc, collection } from "firebase/firestore";
 
-const NewRecipeModal = () => {
+const NewMealModal = () => {
   const [show, setShow] = useState(false);
   const [foodType, setFoodType] = useState("");
 
@@ -39,7 +39,7 @@ const NewRecipeModal = () => {
   };
 
   async function addRecipeDoc(data) {
-    const docRef = await addDoc(collection(db, "familyrecipes"), {
+    const docRef = await addDoc(collection(db, "familymeals"), {
       Recipe: data.target.Recipe.value,
       Description: data.target.Description.value,
       FoodType: foodType,
@@ -58,11 +58,11 @@ const NewRecipeModal = () => {
         className={`text-md p-3 hover:drop-shadow-xl`}
         onClick={handleShow}
       >
-        Add New Recipe
+        Add New Meal
       </button>
       <Dialog open={show} onClose={handleReset}>
         <form onSubmit={handleSubmit}>
-          <DialogTitle>New Meal Recipe</DialogTitle>
+          <DialogTitle>New Family Meal</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
@@ -119,4 +119,4 @@ const NewRecipeModal = () => {
   );
 };
 
-export default NewRecipeModal;
+export default NewMealModal;

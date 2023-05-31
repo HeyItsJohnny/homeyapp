@@ -4,7 +4,7 @@ export { default as Chores } from './Chores';
 export { default as ColorPicker } from './ColorPicker';
 export { default as FamilyMembers } from './FamilyMembers';
 export { default as MealScheduler} from './MealScheduler';
-export { default as FamilyRecipes} from './FamilyRecipes';
+export { default as FamilyMeals} from './FamilyMeals';
 export { default as Planner } from './Planner';
 export { default as Scheduler } from './Scheduler';
 export { default as SharedLogins } from './SharedLogins';

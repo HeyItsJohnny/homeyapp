@@ -11,7 +11,7 @@ import {
   Ecommerce,
   ColorPicker,
   FamilyMembers,
-  FamilyRecipes,
+  FamilyMeals,
   MealScheduler,
   Planner,
   Scheduler,
@@ -80,7 +80,7 @@ function App() {
                 <Route path="/chores" element={<Chores />} />
                 <Route path="/color-picker" element={<ColorPicker />} />
                 <Route path="/family-members" element={<FamilyMembers />} />
-                <Route path="/family-recipes" element={<FamilyRecipes />} />
+                <Route path="/family-meals" element={<FamilyMeals />} />
                 <Route path="/meal-scheduler" element={<MealScheduler />} />
                 <Route path="/planner" element={<Planner />} />
                 <Route path="/scheduler" element={<Scheduler />} />
