@@ -33,6 +33,7 @@ const ResetMealScheduleModal = () => {
 
   const { currentColor } = useStateContext();
 
+  //Delete Meal Schedule
   const getMealScheduleToDelete = async () => {
     try {
       const docCollection = query(collection(db, "mealschedule"));
@@ -64,6 +65,36 @@ const ResetMealScheduleModal = () => {
       alert("Error deleting data from Firestore:", error);
     }
   };
+
+  //Add new Meal Schedule
+  /*
+  const getFamilyMeals = async () => {
+    try {
+      const docCollection = query(collection(db, "mealschedule"));
+      onSnapshot(docCollection, (querySnapshot) => {
+        const list = [];
+        querySnapshot.forEach((doc) => {
+          var data = {
+            id: doc.id,
+          };
+          list.push(data);
+        });
+        setMealscheduleToDelete(list);
+      });
+    } catch (error) {
+      alert("Error deleting data from Firestore:", error);
+    }
+  };
+
+  
+  async function addRecipeDoc(data) {
+    const docRef = await addDoc(collection(db, "familyrecipes"), {
+      Recipe: data.target.Recipe.value,
+      Description: data.target.Description.value,
+      FoodType: foodType,
+    });
+  }
+  */
 
   const SetNewData = async () => {
     /*
