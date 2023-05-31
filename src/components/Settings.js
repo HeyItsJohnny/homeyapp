@@ -54,6 +54,11 @@ export const links = [
     title: "Meals",
     links: [
       {
+        name: "meal schedule",
+        icon: <BiFoodMenu />,
+        linktoname: "meal-scheduler",
+      },
+      {
         name: "weekday schedule",
         icon: <BiFoodMenu />,
         linktoname: "weekday-meal-scheduler",

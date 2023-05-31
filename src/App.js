@@ -12,6 +12,7 @@ import {
   ColorPicker,
   FamilyMembers,
   FamilyRecipes,
+  MealScheduler,
   WeekdayMealScheduler,
   WeekendMealScheduler,
   Planner,
@@ -82,6 +83,7 @@ function App() {
                 <Route path="/color-picker" element={<ColorPicker />} />
                 <Route path="/family-members" element={<FamilyMembers />} />
                 <Route path="/family-recipes" element={<FamilyRecipes />} />
+                <Route path="/meal-scheduler" element={<MealScheduler />} />
                 <Route path="/weekday-meal-scheduler" element={<WeekdayMealScheduler />} />
                 <Route path="/weekend-meal-scheduler" element={<WeekendMealScheduler />} />
                 <Route path="/planner" element={<Planner />} />
