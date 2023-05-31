@@ -4,8 +4,6 @@ export { default as Chores } from './Chores';
 export { default as ColorPicker } from './ColorPicker';
 export { default as FamilyMembers } from './FamilyMembers';
 export { default as MealScheduler} from './MealScheduler';
-export { default as WeekendMealScheduler} from './WeekendMealScheduler';
-export { default as WeekdayMealScheduler} from './WeekdayMealScheduler';
 export { default as FamilyRecipes} from './FamilyRecipes';
 export { default as Planner } from './Planner';
 export { default as Scheduler } from './Scheduler';

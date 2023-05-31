@@ -59,16 +59,6 @@ export const links = [
         linktoname: "meal-scheduler",
       },
       {
-        name: "weekday schedule",
-        icon: <BiFoodMenu />,
-        linktoname: "weekday-meal-scheduler",
-      },
-      {
-        name: "weekend schedule",
-        icon: <BiFoodMenu />,
-        linktoname: "weekend-meal-scheduler",
-      },
-      {
         name: "recipes",
         icon: <MdFoodBank />,
         linktoname: "family-recipes",
