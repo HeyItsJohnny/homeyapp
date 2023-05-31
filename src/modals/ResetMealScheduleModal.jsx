@@ -15,12 +15,10 @@ import {
   collection,
   query,
   onSnapshot,
-  orderBy,
+  addDoc,
   doc,
   deleteDoc,
-  getDocs,
 } from "firebase/firestore";
-import { docClick } from "@syncfusion/ej2-react-richtexteditor";
 
 const ResetMealScheduleModal = () => {
   const [show, setShow] = useState(false);
@@ -30,6 +28,7 @@ const ResetMealScheduleModal = () => {
 
   //Handling Reset
   const [mealscheduleToDelete, setMealscheduleToDelete] = useState([]);
+  const [familyMeals, setFamilyMeals] = useState([]);
 
   const { currentColor } = useStateContext();
 
@@ -48,7 +47,7 @@ const ResetMealScheduleModal = () => {
         setMealscheduleToDelete(list);
       });
     } catch (error) {
-      alert("Error deleting data from Firestore:", error);
+      alert("Error getting data from Firestore:", error);
     }
   };
 
@@ -67,55 +66,70 @@ const ResetMealScheduleModal = () => {
   };
 
   //Add new Meal Schedule
-  /*
+
   const getFamilyMeals = async () => {
     try {
-      const docCollection = query(collection(db, "mealschedule"));
+      const docCollection = query(collection(db, "familymeals"));
       onSnapshot(docCollection, (querySnapshot) => {
         const list = [];
+
         querySnapshot.forEach((doc) => {
+          const FoodType = doc.data().FoodType;
+          var DocFoodType = "";
+
+          if (FoodType === "Breakfast") {
+            DocFoodType = "1. Breakfast";
+          } else if (FoodType === "Lunch") {
+            DocFoodType = "2. Lunch";
+          } else if (FoodType === "Dinner") {
+            DocFoodType = "3. Dinner";
+          }
+
           var data = {
             id: doc.id,
+            Meal: doc.data().Recipe,
+            Description: doc.data().Description,
+            DayOfWeek: "Meals",
+            MealType: DocFoodType,
           };
           list.push(data);
         });
-        setMealscheduleToDelete(list);
+        setFamilyMeals(list);
       });
     } catch (error) {
-      alert("Error deleting data from Firestore:", error);
+      alert("Error getting data from Firestore:", error);
     }
   };
 
-  
-  async function addRecipeDoc(data) {
-    const docRef = await addDoc(collection(db, "familyrecipes"), {
-      Recipe: data.target.Recipe.value,
-      Description: data.target.Description.value,
-      FoodType: foodType,
+  const addMealsToScheduler = async () => {
+    familyMeals.forEach((doc) => {
+      addMealToScheduler(doc);
     });
-  }
-  */
-
-  const SetNewData = async () => {
-    /*
-          const FoodType = doc.data().FoodType;
-          var DocFoodType = "";
-  
-          if (FoodType === "Breakfast") {
-            DocFoodType = '1. Breakfast';
-          } else if (FoodType === "Lunch") {
-            DocFoodType = '2. Lunch';
-          } else if (FoodType === "Dinner") {
-            DocFoodType = '3. Dinner';
-          }
-          */
   };
+
+  async function addMealToScheduler(doc) {
+    try {
+      console.log(doc);
+      await addDoc(collection(db, "mealschedule"), {
+        Meal: doc.Meal,
+        Description: doc.Description,
+        DayOfWeek: doc.DayOfWeek,
+        MealType: doc.MealType
+      });
+    } catch(error) {
+      alert("Error adding data to Firestore:", error);
+    }
+    
+  }
 
   const handleResetClick = () => {
     //Delete Current Weekday Schedule
     getMealScheduleToDelete();
     deleteWeekendMealScheduleData();
-    //addMealSchedulerDoc(e);
+
+    //Get and Add Meals to Scheduler
+    getFamilyMeals();
+    addMealsToScheduler();
     handleClose();
   };
 
