@@ -41,7 +41,7 @@ const NewRecipeModal = () => {
   async function addRecipeDoc(data) {
     const docRef = await addDoc(collection(db, "familyrecipes"), {
       Recipe: data.target.Recipe.value,
-      ServingSize: data.target.ServingSize.value,
+      Description: data.target.Description.value,
       FoodType: foodType,
     });
   }
@@ -75,10 +75,9 @@ const NewRecipeModal = () => {
               variant="standard"
             />
             <TextField
-              required
               margin="dense"
-              id="ServingSize"
-              label="Serving Size"
+              id="Description"
+              label="Description"
               type="text"
               fullWidth
               variant="standard"
@@ -98,9 +97,6 @@ const NewRecipeModal = () => {
                 <MenuItem value="Breakfast">Breakfast</MenuItem>
                 <MenuItem value="Lunch">Lunch</MenuItem>
                 <MenuItem value="Dinner">Dinner</MenuItem>
-                <MenuItem value="Lunch Or Dinner">Lunch or Dinner</MenuItem>
-                <MenuItem value="Snack">Snack</MenuItem>
-                <MenuItem value="Other">Other</MenuItem>
               </Select>
             </FormControl>
           </DialogContent>

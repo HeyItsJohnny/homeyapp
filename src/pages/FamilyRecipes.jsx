@@ -40,7 +40,7 @@ const FamilyRecipes = () => {
           id: doc.id,
           Recipe: doc.data().Recipe,
           FoodType: doc.data().FoodType,
-          ServingSize: doc.data().ServingSize,
+          Description: doc.data().Description,
         };
         list.push(data);
       });

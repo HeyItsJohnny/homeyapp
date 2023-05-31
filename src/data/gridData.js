@@ -50,19 +50,9 @@ export const familyMembersGrid = [
 ];
 
 export const familyRecipesGrid = [
-  { field: "Recipe", headerText: "Recipe", width: "150", textAlign: "Center" },
-  {
-    field: "FoodType",
-    headerText: "Food Type",
-    width: "170",
-    textAlign: "Center",
-  },
-  {
-    field: "ServingSize",
-    headerText: "Serving Size",
-    width: "170",
-    textAlign: "Center",
-  },
+  { field: "Recipe", headerText: "Recipe", width: "100", textAlign: "Center" },
+  { field: "FoodType", headerText: "Food Type", width: "100", textAlign: "Center" },
+  { field: "Description", headerText: "Description", width: "100", textAlign: "Center" },
 ];
 
 export const weekdayMealScheduleKanbanGrid = [
