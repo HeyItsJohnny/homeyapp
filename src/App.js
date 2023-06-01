@@ -13,6 +13,7 @@ import {
   FamilyMembers,
   FamilyMeals,
   MealScheduler,
+  MealSchedulerConfig,
   Planner,
   Scheduler,
   SharedLogins,
@@ -82,6 +83,7 @@ function App() {
                 <Route path="/family-members" element={<FamilyMembers />} />
                 <Route path="/family-meals" element={<FamilyMeals />} />
                 <Route path="/meal-scheduler" element={<MealScheduler />} />
+                <Route path="/meal-scheduler-config" element={<MealSchedulerConfig />} />
                 <Route path="/planner" element={<Planner />} />
                 <Route path="/scheduler" element={<Scheduler />} />
                 <Route path="/shared-logins" element={<SharedLogins />} />

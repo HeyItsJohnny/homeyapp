@@ -4,7 +4,7 @@ import { BiColorFill } from "react-icons/bi";
 import { BsCalendarCheck } from "react-icons/bs";
 import { IoMdContacts } from "react-icons/io";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { GrSchedules } from "react-icons/gr";
+import { GrSchedules, GrConfigure } from "react-icons/gr";
 import { GoDashboard } from "react-icons/go";
 import { BiFoodMenu } from "react-icons/bi";
 import { MdFoodBank, MdCleaningServices } from "react-icons/md";
@@ -57,6 +57,11 @@ export const links = [
         name: "meal schedule",
         icon: <BiFoodMenu />,
         linktoname: "meal-scheduler",
+      },
+      {
+        name: "meal schedule config.",
+        icon: <GrConfigure />,
+        linktoname: "meal-scheduler-config",
       },
       {
         name: "meal list",
