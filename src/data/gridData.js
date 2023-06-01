@@ -50,7 +50,7 @@ export const familyMembersGrid = [
 ];
 
 export const familyMealsGrid = [
-  { field: "Recipe", headerText: "Recipe", width: "100", textAlign: "Center" },
+  { field: "Meal", headerText: "Meal", width: "100", textAlign: "Center" },
   { field: "FoodType", headerText: "Food Type", width: "100", textAlign: "Center" },
   { field: "Description", headerText: "Description", width: "100", textAlign: "Center" },
 ];

@@ -38,7 +38,7 @@ const FamilyMeals = () => {
       querySnapshot.forEach((doc) => {
         var data = {
           id: doc.id,
-          Recipe: doc.data().Recipe,
+          Meal: doc.id,
           FoodType: doc.data().FoodType,
           Description: doc.data().Description,
         };

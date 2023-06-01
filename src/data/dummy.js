@@ -3248,6 +3248,20 @@ export const sampleKanbanData = [
     Description: 'For JJ',
     DayOfWeek: 'Meals',
     MealType: "3. Dinner"
+  },
+  {
+    Id: '05',
+    Meal: 'Mac & Cheese',
+    Description: 'For JJ',
+    DayOfWeek: 'Meals',
+    MealType: "3. Dinner"
+  },
+  {
+    Id: '06',
+    Meal: 'Grilled Cheese',
+    Description: 'For JJ',
+    DayOfWeek: 'Meals',
+    MealType: "2. Lunch"
   }
 ];
 

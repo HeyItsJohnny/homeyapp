@@ -31,7 +31,7 @@ const MealScheduler = () => {
       const list = [];
       querySnapshot.forEach((doc) => {
         var data = {
-          Id: doc.id,
+          Id: doc.data().Meal,
           Meal: doc.data().Meal,
           MealType: doc.data().MealType,
           Description: doc.data().Description,
@@ -44,6 +44,7 @@ const MealScheduler = () => {
   };
 
   useEffect(() => {
+    setMealSchedule([]);
     fetchData();
   }, []);
 
@@ -55,7 +56,7 @@ const MealScheduler = () => {
       </div>
       <KanbanComponent
         id="kanban"
-        dataSource={sampleKanbanData}
+        dataSource={mealSchedule}
         columns={[
           { headerText: "Meals", keyField: "Meals" },
           { headerText: "Monday", keyField: "Monday" },
@@ -66,7 +67,7 @@ const MealScheduler = () => {
           { headerText: "Saturday", keyField: "Saturday" },
           { headerText: "Sunday", keyField: "Sunday" },
         ]}
-        cardSettings={{ contentField: "Description", headerField: "Meal" }}
+        cardSettings={{ contentField: "Description", headerField: "Id" }}
         keyField="DayOfWeek"
         swimlaneSettings={{ keyField: "MealType" }}
       ></KanbanComponent>

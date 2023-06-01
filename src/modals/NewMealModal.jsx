@@ -11,7 +11,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
 import { db } from "../firebase/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, setDoc, doc } from "firebase/firestore";
 
 const NewMealModal = () => {
   const [show, setShow] = useState(false);
@@ -39,11 +39,14 @@ const NewMealModal = () => {
   };
 
   async function addRecipeDoc(data) {
-    const docRef = await addDoc(collection(db, "familymeals"), {
-      Recipe: data.target.Recipe.value,
-      Description: data.target.Description.value,
-      FoodType: foodType,
-    });
+    try {
+      await setDoc(doc(db, "familymeals", data.target.Meal.value), {
+        Description: data.target.Description.value,
+        FoodType: foodType,
+      });
+    } catch (error) {
+      alert("There was an error adding to the database: " + error);
+    }
   }
 
   return (
@@ -68,8 +71,8 @@ const NewMealModal = () => {
               autoFocus
               required
               margin="dense"
-              id="Recipe"
-              label="Recipe"
+              id="Meal"
+              label="Meal"
               type="text"
               fullWidth
               variant="standard"
