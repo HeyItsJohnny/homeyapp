@@ -11,8 +11,9 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { familyMembersGrid } from "../data/gridData";
+import { mealScheduleGrid } from "../data/gridData";
 import { Header } from "../components";
+import MealSchedulerConfigMealList from "../components/MealSchedulerConfigMealList";
 
 import { db } from "../firebase/firebase";
 import {
@@ -20,16 +21,79 @@ import {
   query,
   onSnapshot,
   orderBy,
-  addDoc,
-  updateDoc,
+  where,
   doc,
   deleteDoc,
 } from "firebase/firestore";
 
 const MealSchedulerConfig = () => {
-  return (
-    <div>MealSchedulerConfig</div>
-  )
-}
+  const [mealSchedule, setMealSchedule] = useState([]);
 
-export default MealSchedulerConfig
+  const fetchData = async () => {
+    const docCollection = query(
+      collection(db, "mealschedule"),
+      where("DayOfWeek","==","Meals"),
+      orderBy("MealType")
+    );
+    onSnapshot(docCollection, (querySnapshot) => {
+      const list = [];
+      querySnapshot.forEach((doc) => {
+        var data = {
+          id: doc.id,
+          Meal: doc.data().Meal,
+          MealType: doc.data().MealType,
+          Description: doc.data().Description,
+          DayOfWeek: doc.data().DayOfWeek
+        };
+        list.push(data);
+      });
+      setMealSchedule(list);
+    });
+  };
+
+  const handleActionComplete = async (args) => {
+    if (args.requestType === "delete") {
+      const deletedRow = args.data[0];
+      try {
+        await deleteDoc(doc(db, "mealschedule", deletedRow.id));
+      } catch (error) {
+        alert("Error deleting data from Firestore:", error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+      <Header category="Meals" title="Meal Schedule Configurator" />
+      <MealSchedulerConfigMealList />
+      <br/>
+      <br/>
+      <Header category="Meals in Schedule"/>
+      <GridComponent
+        id="gridcomp"
+        dataSource={mealSchedule}
+        actionComplete={handleActionComplete}
+        allowPaging
+        allowSorting
+        toolbar={["Search", "Delete"]}
+        editSettings={{
+          allowDeleting: true,
+        }}
+        width="auto"
+      >
+        <ColumnsDirective>
+          {mealScheduleGrid.map((item, index) => (
+            <ColumnDirective key={item.id} {...item} />
+          ))}
+        </ColumnsDirective>
+        <Inject services={[Page, Search, Edit, Toolbar]} />
+      </GridComponent>
+    </div>
+  );
+};
+
+export default MealSchedulerConfig;

@@ -49,9 +49,22 @@ export const familyMembersGrid = [
   { field: "Role", headerText: "Role", width: "170", textAlign: "Center" },
 ];
 
+export const familyMealsSelectionGrid = [
+  { type: 'checkbox', width: '50' },
+  { field: "Meal", headerText: "Meal", width: "100", textAlign: "Center" },
+  { field: "FoodType", headerText: "Food Type", width: "100", textAlign: "Center" },
+  { field: "Description", headerText: "Description", width: "100", textAlign: "Center" },
+];
+
 export const familyMealsGrid = [
   { field: "Meal", headerText: "Meal", width: "100", textAlign: "Center" },
   { field: "FoodType", headerText: "Food Type", width: "100", textAlign: "Center" },
+  { field: "Description", headerText: "Description", width: "100", textAlign: "Center" },
+];
+
+export const mealScheduleGrid = [
+  { field: "Meal", headerText: "Meal", width: "100", textAlign: "Center" },
+  { field: "MealType", headerText: "Meal Type", width: "100", textAlign: "Center" },
   { field: "Description", headerText: "Description", width: "100", textAlign: "Center" },
 ];
 
