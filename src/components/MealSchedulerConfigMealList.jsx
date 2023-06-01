@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   GridComponent,
   ColumnsDirective,
@@ -24,9 +24,12 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
+import { blue } from "@mui/material/colors";
 
 const MealSchedulerConfigMealList = () => {
+  let grid;
   const [familyMeals, setFamilyMeals] = useState([]);
+  const [selectedFamilyMeals, setSelectedFamilyMeals] = useState([]);
 
   const fetchData = async () => {
     const docCollection = query(
@@ -52,13 +55,64 @@ const MealSchedulerConfigMealList = () => {
     fetchData();
   }, []);
 
-  const handleActionComplete = async (args) => {
+  const handleActionComplete = (args) => {
     console.log(args);
+  };
+
+  const rowSelected = () => {
+    if (grid) {
+      //setSelectedFamilyMeals([]);
+      /** Get the selected row indexes */
+      //const selectedrowindex = grid.getSelectedRowIndexes();
+      /** Get the selected records. */
+      const selectedrecords = grid.getSelectedRecords();
+
+      setSelectedFamilyMeals(selectedrecords);
+
+      //alert(selectedrowindex + " : " + JSON.stringify(selectedrecords));
+    }
+  };
+
+  const clear = () => {
+    setSelectedFamilyMeals([]);
+  };
+
+  const test = () => {
+    console.log(selectedFamilyMeals);
   };
 
   return (
     <>
-      <Header category="Select the Meals you want to add to the Scheduler." title="" />
+      <Header
+        category="Select the Meals you want to add to the Scheduler."
+        title=""
+      />
+
+    <button
+        type="button"
+        style={{
+          backgroundColor: blue,
+          color: "Blue",
+          borderRadius: "10px",
+        }}
+        className={`text-md p-3 hover:drop-shadow-xl`}
+        onClick={clear}
+      >
+        clear
+      </button>
+
+      <button
+        type="button"
+        style={{
+          backgroundColor: blue,
+          color: "Blue",
+          borderRadius: "10px",
+        }}
+        className={`text-md p-3 hover:drop-shadow-xl`}
+        onClick={test}
+      >
+        GET ROWS
+      </button>
 
       <GridComponent
         id="gridcomp"
@@ -71,13 +125,15 @@ const MealSchedulerConfigMealList = () => {
           allowDeleting: true,
         }}
         width="auto"
+        rowSelected={rowSelected}
+        ref={(g) => (grid = g)}
       >
         <ColumnsDirective>
           {familyMealsSelectionGrid.map((item, index) => (
             <ColumnDirective key={item.id} {...item} />
           ))}
         </ColumnsDirective>
-        <Inject services={[Page, Search, Toolbar, Selection,]} />
+        <Inject services={[Page, Search, Toolbar, Selection]} />
       </GridComponent>
     </>
   );
