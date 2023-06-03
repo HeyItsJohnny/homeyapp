@@ -13,7 +13,7 @@ import {
 //DATA
 import { mealScheduleGrid } from "../data/gridData";
 import { Header } from "../components";
-import MealSchedulerConfigMealList from "../components/MealSchedulerConfigMealList";
+import { MealSchedulerConfigMealList } from "../components";
 
 import { db } from "../firebase/firebase";
 import {

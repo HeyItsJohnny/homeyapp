@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useStateContext } from "../contexts/ContextProvider";
 import {
   GridComponent,
   ColumnsDirective,
@@ -23,13 +24,14 @@ import {
   orderBy,
   doc,
   deleteDoc,
+  addDoc,
 } from "firebase/firestore";
 import { blue } from "@mui/material/colors";
 
 const MealSchedulerConfigMealList = () => {
   let grid;
   const [familyMeals, setFamilyMeals] = useState([]);
-  const [selectedFamilyMeals, setSelectedFamilyMeals] = useState([]);
+  const { currentColor } = useStateContext();
 
   const fetchData = async () => {
     const docCollection = query(
@@ -59,26 +61,38 @@ const MealSchedulerConfigMealList = () => {
     console.log(args);
   };
 
-  const rowSelected = () => {
+  const getSelectedRows = () => {
     if (grid) {
-      //setSelectedFamilyMeals([]);
-      /** Get the selected row indexes */
-      //const selectedrowindex = grid.getSelectedRowIndexes();
-      /** Get the selected records. */
+      //console.log(selectedrecords);
       const selectedrecords = grid.getSelectedRecords();
-
-      setSelectedFamilyMeals(selectedrecords);
-
-      //alert(selectedrowindex + " : " + JSON.stringify(selectedrecords));
+      selectedrecords.forEach((data) => {
+        addToScheduler(data);
+      });
     }
   };
 
-  const clear = () => {
-    setSelectedFamilyMeals([]);
-  };
+  const addToScheduler = async (data) => {
+    try {
+      const FoodType = data.FoodType;
+      var DocFoodType = "";
 
-  const test = () => {
-    console.log(selectedFamilyMeals);
+      if (FoodType === "Breakfast") {
+        DocFoodType = "1. Breakfast";
+      } else if (FoodType === "Lunch") {
+        DocFoodType = "2. Lunch";
+      } else if (FoodType === "Dinner") {
+        DocFoodType = "3. Dinner";
+      }
+      console.log(DocFoodType);
+      await addDoc(collection(db, "mealschedule"), {
+        Meal: data.Meal,
+        Description: data.Description,
+        DayOfWeek: "Meals",
+        MealType: DocFoodType
+      });
+    } catch (error) {
+      alert("Error adding data to Database: " + error);
+    }
   };
 
   return (
@@ -87,33 +101,19 @@ const MealSchedulerConfigMealList = () => {
         category="Select the Meals you want to add to the Scheduler."
         title=""
       />
-
-    <button
-        type="button"
-        style={{
-          backgroundColor: blue,
-          color: "Blue",
-          borderRadius: "10px",
-        }}
-        className={`text-md p-3 hover:drop-shadow-xl`}
-        onClick={clear}
-      >
-        clear
-      </button>
-
       <button
         type="button"
         style={{
-          backgroundColor: blue,
-          color: "Blue",
+          backgroundColor: currentColor,
+          color: "White",
           borderRadius: "10px",
         }}
         className={`text-md p-3 hover:drop-shadow-xl`}
-        onClick={test}
+        onClick={getSelectedRows}
       >
-        GET ROWS
+        Add Rows to Schedule
       </button>
-
+      <br />
       <GridComponent
         id="gridcomp"
         dataSource={familyMeals}
@@ -125,7 +125,6 @@ const MealSchedulerConfigMealList = () => {
           allowDeleting: true,
         }}
         width="auto"
-        rowSelected={rowSelected}
         ref={(g) => (grid = g)}
       >
         <ColumnsDirective>

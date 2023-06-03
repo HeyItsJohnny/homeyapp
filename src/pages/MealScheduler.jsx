@@ -47,6 +47,10 @@ const MealScheduler = () => {
     setMealSchedule([]);
     fetchData();
   }, []);
+  
+  const addEvent = async (args) => {
+    console.log(args);
+  }
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
@@ -70,6 +74,7 @@ const MealScheduler = () => {
         cardSettings={{ contentField: "Description", headerField: "Id" }}
         keyField="DayOfWeek"
         swimlaneSettings={{ keyField: "MealType" }}
+        actionComplete={addEvent}
       ></KanbanComponent>
     </div>
   );
