@@ -32,6 +32,7 @@ const MealScheduler = () => {
       querySnapshot.forEach((doc) => {
         var data = {
           Id: doc.data().Meal,
+          DocumentId: doc.id,
           Meal: doc.data().Meal,
           MealType: doc.data().MealType,
           Description: doc.data().Description,
@@ -50,6 +51,13 @@ const MealScheduler = () => {
   
   const addEvent = async (args) => {
     console.log(args);
+    if (args.requestType === "cardChanged") {
+      //Updated
+
+    } else if (args.requestType === "cardRemoved") {
+      //Deleted
+      
+    }
   }
 
   return (
