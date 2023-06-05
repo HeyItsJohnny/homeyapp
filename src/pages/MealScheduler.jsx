@@ -23,6 +23,7 @@ import {
 } from "firebase/firestore";
 
 const MealScheduler = () => {
+  let previousValue;
   const [mealSchedule, setMealSchedule] = useState([]);
 
   const fetchData = async () => {
@@ -45,18 +46,35 @@ const MealScheduler = () => {
   };
 
   useEffect(() => {
-    setMealSchedule([]);
     fetchData();
+    return () => {
+      setMealSchedule([]); // This worked for me
+    };
   }, []);
   
   const addEvent = async (args) => {
     console.log(args);
+    //console.log(args.data[0].previousData);
     if (args.requestType === "cardChanged") {
       //Updated
-
+      try {
+        const mealScheduleRef = doc(db,"mealschedule",args.changedRecords[0].DocumentId);
+        await updateDoc(mealScheduleRef, {
+          Meal: args.changedRecords[0].Meal,
+          MealType: args.changedRecords[0].MealType,
+          Description: args.changedRecords[0].Description ?? "",
+          DayOfWeek: args.changedRecords[0].DayOfWeek?? "",
+        });
+      } catch (error) {
+        alert("Error editing data to Database: " + error);
+      }
     } else if (args.requestType === "cardRemoved") {
       //Deleted
-      
+      try {
+        await deleteDoc(doc(db, "mealschedule", args.deletedRecords[0].DocumentId));
+      } catch (error) {
+        alert("Error deleting data from Database: " + error);
+      }
     }
   }
 

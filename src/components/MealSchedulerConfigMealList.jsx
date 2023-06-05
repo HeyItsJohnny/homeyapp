@@ -55,6 +55,9 @@ const MealSchedulerConfigMealList = () => {
 
   useEffect(() => {
     fetchData();
+    return () => {
+      setFamilyMeals([]); // This worked for me
+    };
   }, []);
 
   const handleActionComplete = (args) => {
@@ -83,7 +86,6 @@ const MealSchedulerConfigMealList = () => {
       } else if (FoodType === "Dinner") {
         DocFoodType = "3. Dinner";
       }
-      console.log(DocFoodType);
       await addDoc(collection(db, "mealschedule"), {
         Meal: data.Meal,
         Description: data.Description,

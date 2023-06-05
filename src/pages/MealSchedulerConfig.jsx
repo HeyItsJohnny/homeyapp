@@ -64,6 +64,9 @@ const MealSchedulerConfig = () => {
 
   useEffect(() => {
     fetchData();
+    return () => {
+      setMealSchedule([]); // This worked for me
+    };
   }, []);
 
   return (

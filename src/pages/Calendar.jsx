@@ -100,13 +100,16 @@ const Calendar = () => {
       try {
         await deleteDoc(doc(db, "calendarevents", args.deletedRecords[0].Id));
       } catch (error) {
-        alert("Error editing data to Database: " + error);
+        alert("Error deleting data from Database: " + error);
       }
     }
   };
 
   useEffect(() => {
     fetchData();
+    return () => {
+      setCalendarEvents([]); // This worked for me
+    };
   }, []);
 
   return (
