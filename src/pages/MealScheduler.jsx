@@ -24,9 +24,10 @@ const MealScheduler = () => {
     const docCollection = query(collection(db, "mealschedule"));
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
+      var itemCount = 1;
       querySnapshot.forEach((doc) => {
         var data = {
-          Id: doc.data().Meal,
+          Id: itemCount + '. ' + doc.data().Meal,
           DocumentId: doc.id,
           Meal: doc.data().Meal,
           MealType: doc.data().MealType,
@@ -34,6 +35,7 @@ const MealScheduler = () => {
           DayOfWeek: doc.data().DayOfWeek,
         };
         list.push(data);
+        itemCount += 1;
       });
       setMealSchedule(list);
     });
@@ -80,13 +82,13 @@ const MealScheduler = () => {
         dataSource={mealSchedule}
         columns={[
           { headerText: "Meals", keyField: "Meals" },
+          { headerText: "Sunday", keyField: "Sunday" },
           { headerText: "Monday", keyField: "Monday" },
           { headerText: "Tuesday", keyField: "Tuesday" },
           { headerText: "Wednesday", keyField: "Wednesday" },
           { headerText: "Thursday", keyField: "Thursday" },
           { headerText: "Friday", keyField: "Friday" },
           { headerText: "Saturday", keyField: "Saturday" },
-          { headerText: "Sunday", keyField: "Sunday" },
         ]}
         cardSettings={{ contentField: "Description", headerField: "Id" }}
         keyField="DayOfWeek"

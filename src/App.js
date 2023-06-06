@@ -10,6 +10,7 @@ import {
   Chores,
   Ecommerce,
   ColorPicker,
+  ChoresConfig,
   FamilyMembers,
   FamilyMeals,
   MealScheduler,
@@ -79,6 +80,8 @@ function App() {
                 {/* PAGES & APPS */}
                 <Route path="/calendar" element={<Calendar />} />
                 <Route path="/chores" element={<Chores />} />
+                <Route path="/chores-config" element={<Chores />} />
+                <Route path="/chores-list" element={<Chores />} />
                 <Route path="/color-picker" element={<ColorPicker />} />
                 <Route path="/family-members" element={<FamilyMembers />} />
                 <Route path="/family-meals" element={<FamilyMeals />} />

@@ -1,7 +1,7 @@
 import React from "react";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { BiColorFill } from "react-icons/bi";
-import { BsCalendarCheck } from "react-icons/bs";
+import { BsCalendarCheck, BsListStars } from "react-icons/bs";
 import { IoMdContacts } from "react-icons/io";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { GrSchedules, GrConfigure } from "react-icons/gr";
@@ -29,12 +29,7 @@ export const links = [
     title: "Apps",
     links: [
       {
-        name: "chores",
-        icon: <MdCleaningServices />,
-        linktoname: "chores",
-      },
-      {
-        name: "calendar",
+        name: "family calendar",
         icon: <AiOutlineCalendar />,
         linktoname: "calendar",
       },
@@ -47,6 +42,26 @@ export const links = [
         name: "scheduler",
         icon: <GrSchedules />,
         linktoname: "scheduler",
+      },
+    ],
+  },
+  {
+    title: "Chores",
+    links: [
+      {
+        name: "chores",
+        icon: <MdCleaningServices />,
+        linktoname: "chores",
+      },
+      {
+        name: "chores config.",
+        icon: <GrConfigure />,
+        linktoname: "chores-config",
+      },
+      {
+        name: "chores list",
+        icon: <BsListStars />,
+        linktoname: "chores-list",
       },
     ],
   },
