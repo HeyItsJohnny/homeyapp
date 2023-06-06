@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import {
   KanbanComponent,
-  ColumnsDirective,
-  ColumnDirective,
 } from "@syncfusion/ej2-react-kanban";
 
-import { sampleKanbanData } from "../data/dummy";
 import { Header } from "../components";
 
 import { db } from "../firebase/firebase";
@@ -14,8 +11,6 @@ import {
   collection,
   query,
   onSnapshot,
-  orderBy,
-  addDoc,
   updateDoc,
   doc,
   deleteDoc,
