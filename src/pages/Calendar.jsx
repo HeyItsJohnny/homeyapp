@@ -47,7 +47,7 @@ const Calendar = () => {
           IsAllDay: doc.data().IsAllDay,
           RecurrenceRule: doc.data().RecurrenceRule,
           RecurrenceException: doc.data().RecurrenceException,
-          CategoryColor: doc.data().CategoryColor,
+          Color: 'red',
           EventColor: doc.data().EventColor,
         };
         list.push(data);

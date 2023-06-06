@@ -7,7 +7,6 @@ import {
 
 import { sampleKanbanData } from "../data/dummy";
 import { Header } from "../components";
-import ResetMealScheduleModal from "../modals/ResetMealScheduleModal";
 
 import { db } from "../firebase/firebase";
 
@@ -81,9 +80,6 @@ const MealScheduler = () => {
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Meals" title="Meal Schedule" />
-      <div className="mb-10">
-        <ResetMealScheduleModal />
-      </div>
       <KanbanComponent
         id="kanban"
         dataSource={mealSchedule}
