@@ -44,6 +44,12 @@ import product6 from "./product6.jpg";
 import product7 from "./product7.jpg";
 import product8 from "./product8.jpg";
 
+export const choresListGrid = [
+  { field: "Chore", headerText: "Chore", width: "100", textAlign: "Center" },
+  { field: "AssignedTo", headerText: "Assigned To", width: "100", textAlign: "Center" },
+  { field: "Frequency", headerText: "Frequency", width: "100", textAlign: "Center" },
+];
+
 export const familyMembersGrid = [
   { field: "Name", headerText: "Name", width: "150", textAlign: "Center" },
   { field: "Role", headerText: "Role", width: "170", textAlign: "Center" },

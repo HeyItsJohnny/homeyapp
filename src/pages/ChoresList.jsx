@@ -11,7 +11,7 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { familyMealsGrid } from "../data/gridData";
+import { choresListGrid } from "../data/gridData";
 import { Header } from "../components";
 import NewMealModal from "../modals/NewMealModal";
 
@@ -25,26 +25,26 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const FamilyMeals = () => {
-  const [familyMeals, setFamilyMeals] = useState([]);
+const ChoresList = () => {
+  const [chores, setChores] = useState([]);
 
   const fetchData = async () => {
     const docCollection = query(
-      collection(db, "familymeals"),
-      orderBy("FoodType")
+      collection(db, "chores"),
+      orderBy("Chore")
     );
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
       querySnapshot.forEach((doc) => {
         var data = {
           id: doc.id,
-          Meal: doc.id,
-          FoodType: doc.data().FoodType,
-          Description: doc.data().Description,
+          Chore: doc.data().Chore,
+          AssignedTo: doc.data().AssignedTo,
+          Frequency: doc.data().Frequency,
         };
         list.push(data);
       });
-      setFamilyMeals(list);
+      setChores(list);
     });
   };
 
@@ -52,7 +52,7 @@ const FamilyMeals = () => {
     if (args.requestType === "delete") {
       const deletedRow = args.data[0];
       try {
-        await deleteDoc(doc(db, "familymeals", deletedRow.id));
+        await deleteDoc(doc(db, "chores", deletedRow.id));
       } catch (error) {
         alert("Error deleting data from Firestore:", error);
       }
@@ -61,19 +61,19 @@ const FamilyMeals = () => {
   useEffect(() => {
     fetchData();
     return () => {
-      setFamilyMeals([]); // This worked for me
+      setChores([]); // This worked for me
     };
   }, []);
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Meals" title="Meal List" />
+      <Header category="Chores" title="Chore List" />
       <div className="mb-10">
         <NewMealModal />
       </div>
       <GridComponent
         id="gridcomp"
-        dataSource={familyMeals}
+        dataSource={chores}
         actionComplete={handleActionComplete}
         allowPaging
         allowSorting
@@ -84,7 +84,7 @@ const FamilyMeals = () => {
         width="auto"
       >
         <ColumnsDirective>
-          {familyMealsGrid.map((item, index) => (
+          {choresListGrid.map((item, index) => (
             <ColumnDirective key={item.id} {...item} />
           ))}
         </ColumnsDirective>
@@ -94,4 +94,4 @@ const FamilyMeals = () => {
   );
 };
 
-export default FamilyMeals;
+export default ChoresList;
