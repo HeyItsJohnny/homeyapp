@@ -101,8 +101,8 @@ const MealSchedulerConfigMealList = () => {
     <>
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
         <Header
-          category="Select the Meals you want to add to the Scheduler."
-          title=""
+          category="Meals"
+          title="Meal Schedule Configurator"
         />
         <div className="mb-10">
           <button

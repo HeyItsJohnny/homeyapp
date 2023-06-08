@@ -5,8 +5,8 @@ import ChoreScheduleConfigList from "../components/ChoreScheduleConfigList";
 const ChoresConfig = () => {
   return (
     <>
-      <ChoreScheduleConfigList />
       <ChoreList />
+      <ChoreScheduleConfigList />
     </>
   );
 };

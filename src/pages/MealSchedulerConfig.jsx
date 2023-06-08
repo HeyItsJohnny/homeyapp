@@ -70,12 +70,11 @@ const MealSchedulerConfig = () => {
   }, []);
 
   return (
+    <>
+    
+    <MealSchedulerConfigMealList />
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Meals" title="Meal Schedule Configurator" />
-      <MealSchedulerConfigMealList />
-      <br/>
-      <br/>
-      <Header category="Meals in Schedule"/>
+      <Header category="Meals" title="Meal to Schedule" />
       <GridComponent
         id="gridcomp"
         dataSource={mealSchedule}
@@ -96,6 +95,7 @@ const MealSchedulerConfig = () => {
         <Inject services={[Page, Search, Edit, Toolbar]} />
       </GridComponent>
     </div>
+    </>
   );
 };
 
