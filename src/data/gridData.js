@@ -51,6 +51,11 @@ export const choresListGrid = [
   { field: "LastUpdated", headerText: "Last Updated", width: "100", textAlign: "Center" },
 ];
 
+export const choresScheduleGrid = [
+  { field: "Chore", headerText: "Chore", width: "100", textAlign: "Center" },
+];
+
+
 export const familyMembersGrid = [
   { field: "Name", headerText: "Name", width: "150", textAlign: "Center" },
   { field: "Role", headerText: "Role", width: "170", textAlign: "Center" },

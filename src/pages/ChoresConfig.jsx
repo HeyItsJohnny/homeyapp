@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import ChoreList from "./ChoresList";
+import ChoreScheduleConfigList from "../components/ChoreScheduleConfigList";
 
 const ChoresConfig = () => {
   return (
-    <div>ChoresConfig</div>
-  )
-}
+    <>
+      <ChoreScheduleConfigList />
+      <ChoreList />
+    </>
+  );
+};
 
-export default ChoresConfig
+export default ChoresConfig;

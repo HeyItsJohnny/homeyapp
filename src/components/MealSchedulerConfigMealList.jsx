@@ -90,7 +90,7 @@ const MealSchedulerConfigMealList = () => {
         Meal: data.Meal,
         Description: data.Description,
         DayOfWeek: "Meals",
-        MealType: DocFoodType
+        MealType: DocFoodType,
       });
     } catch (error) {
       alert("Error adding data to Database: " + error);
@@ -99,43 +99,47 @@ const MealSchedulerConfigMealList = () => {
 
   return (
     <>
-      <Header
-        category="Select the Meals you want to add to the Scheduler."
-        title=""
-      />
-      <button
-        type="button"
-        style={{
-          backgroundColor: currentColor,
-          color: "White",
-          borderRadius: "10px",
-        }}
-        className={`text-md p-3 hover:drop-shadow-xl`}
-        onClick={getSelectedRows}
-      >
-        Add Rows to Schedule
-      </button>
-      <br />
-      <GridComponent
-        id="gridcomp"
-        dataSource={familyMeals}
-        actionComplete={handleActionComplete}
-        allowPaging
-        allowSorting
-        toolbar={["Search"]}
-        editSettings={{
-          allowDeleting: true,
-        }}
-        width="auto"
-        ref={(g) => (grid = g)}
-      >
-        <ColumnsDirective>
-          {familyMealsSelectionGrid.map((item, index) => (
-            <ColumnDirective key={item.id} {...item} />
-          ))}
-        </ColumnsDirective>
-        <Inject services={[Page, Search, Toolbar, Selection]} />
-      </GridComponent>
+      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+        <Header
+          category="Select the Meals you want to add to the Scheduler."
+          title=""
+        />
+        <div className="mb-10">
+          <button
+            type="button"
+            style={{
+              backgroundColor: currentColor,
+              color: "White",
+              borderRadius: "10px",
+            }}
+            className={`text-md p-3 hover:drop-shadow-xl`}
+            onClick={getSelectedRows}
+          >
+            Add Rows to Schedule
+          </button>
+        </div>
+
+        <GridComponent
+          id="gridcomp"
+          dataSource={familyMeals}
+          actionComplete={handleActionComplete}
+          allowPaging
+          allowSorting
+          toolbar={["Search"]}
+          editSettings={{
+            allowDeleting: true,
+          }}
+          width="auto"
+          ref={(g) => (grid = g)}
+        >
+          <ColumnsDirective>
+            {familyMealsSelectionGrid.map((item, index) => (
+              <ColumnDirective key={item.id} {...item} />
+            ))}
+          </ColumnsDirective>
+          <Inject services={[Page, Search, Toolbar, Selection]} />
+        </GridComponent>
+      </div>
     </>
   );
 };
