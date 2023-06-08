@@ -13,7 +13,7 @@ import {
 //DATA
 import { choresListGrid } from "../data/gridData";
 import { Header } from "../components";
-import NewMealModal from "../modals/NewMealModal";
+import NewChoreModal from "../modals/NewChoreModal";
 
 import { db } from "../firebase/firebase";
 import {
@@ -30,17 +30,20 @@ const ChoresList = () => {
 
   const fetchData = async () => {
     const docCollection = query(
-      collection(db, "chores"),
-      orderBy("Chore")
+      collection(db, "chores")
     );
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
       querySnapshot.forEach((doc) => {
+        const formattedDate = `${(doc.data().LastUpdated.toDate().getMonth() + 1)
+          .toString()
+          .padStart(2, '0')}/${doc.data().LastUpdated.toDate().getDate().toString().padStart(2, '0')}/${doc.data().LastUpdated.toDate().getFullYear()}`;
         var data = {
           id: doc.id,
-          Chore: doc.data().Chore,
+          Chore: doc.id,
           AssignedTo: doc.data().AssignedTo,
           Frequency: doc.data().Frequency,
+          LastUpdated: formattedDate
         };
         list.push(data);
       });
@@ -69,7 +72,7 @@ const ChoresList = () => {
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <Header category="Chores" title="Chore List" />
       <div className="mb-10">
-        <NewMealModal />
+        <NewChoreModal />
       </div>
       <GridComponent
         id="gridcomp"
