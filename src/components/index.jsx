@@ -13,3 +13,4 @@ export { default as ChartsHeader } from './ChartsHeader';
 export { default as Header } from './Header';
 
 export { default as MealSchedulerConfigMealList } from './MealSchedulerConfigMealList';
+export { default as ChoreScheduleConfigList } from './ChoreScheduleConfigList';

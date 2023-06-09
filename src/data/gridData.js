@@ -44,6 +44,14 @@ import product6 from "./product6.jpg";
 import product7 from "./product7.jpg";
 import product8 from "./product8.jpg";
 
+export const choresListSelectionGrid = [
+  { type: 'checkbox', width: '50' },
+  { field: "id", headerText: "Chore", width: "100", textAlign: "Center" },
+  { field: "AssignedTo", headerText: "Assigned To", width: "100", textAlign: "Center" },
+  { field: "Frequency", headerText: "Frequency", width: "100", textAlign: "Center" },
+  { field: "LastUpdated", headerText: "Last Updated", width: "100", textAlign: "Center" },
+];
+
 export const choresListGrid = [
   { field: "id", headerText: "Chore", width: "100", textAlign: "Center" },
   { field: "AssignedTo", headerText: "Assigned To", width: "100", textAlign: "Center" },
@@ -53,6 +61,8 @@ export const choresListGrid = [
 
 export const choresScheduleGrid = [
   { field: "Chore", headerText: "Chore", width: "100", textAlign: "Center" },
+  { field: "Status", headerText: "Status", width: "100", textAlign: "Center" },
+  { field: "AssignedTo", headerText: "Assigned To", width: "100", textAlign: "Center" },
 ];
 
 

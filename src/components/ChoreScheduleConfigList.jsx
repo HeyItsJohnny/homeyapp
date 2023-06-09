@@ -13,7 +13,7 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { choresScheduleGrid } from "../data/gridData";
+import { choresListSelectionGrid } from "../data/gridData";
 import { Header } from "../components";
 
 import { db } from "../firebase/firebase";
@@ -23,7 +23,7 @@ import {
   onSnapshot,
   orderBy,
   doc,
-  deleteDoc,
+  setDoc,
   addDoc,
 } from "firebase/firestore";
 import { blue } from "@mui/material/colors";
@@ -34,13 +34,26 @@ const ChoreScheduleConfigList = () => {
   const { currentColor } = useStateContext();
 
   const fetchData = async () => {
-    const docCollection = query(collection(db, "choreschedule"));
+    const docCollection = query(collection(db, "chores"));
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
       querySnapshot.forEach((doc) => {
+        const formattedDate = `${(
+          doc.data().LastUpdated.toDate().getMonth() + 1
+        )
+          .toString()
+          .padStart(2, "0")}/${doc
+          .data()
+          .LastUpdated.toDate()
+          .getDate()
+          .toString()
+          .padStart(2, "0")}/${doc.data().LastUpdated.toDate().getFullYear()}`;
         var data = {
           id: doc.id,
-          Chore: doc.data().Chore,
+          Chore: doc.id,
+          AssignedTo: doc.data().AssignedTo,
+          Frequency: doc.data().Frequency,
+          LastUpdated: formattedDate,
         };
         list.push(data);
       });
@@ -63,31 +76,17 @@ const ChoreScheduleConfigList = () => {
     if (grid) {
       const selectedrecords = grid.getSelectedRecords();
       selectedrecords.forEach((data) => {
-        //addToScheduler(data);
+        addToScheduler(data);
       });
     }
   };
 
   const addToScheduler = async (data) => {
     try {
-      /*
-        const FoodType = data.FoodType;
-        var DocFoodType = "";
-  
-        if (FoodType === "Breakfast") {
-          DocFoodType = "1. Breakfast";
-        } else if (FoodType === "Lunch") {
-          DocFoodType = "2. Lunch";
-        } else if (FoodType === "Dinner") {
-          DocFoodType = "3. Dinner";
-        }
-        await addDoc(collection(db, "mealschedule"), {
-          Meal: data.Meal,
-          Description: data.Description,
-          DayOfWeek: "Meals",
-          MealType: DocFoodType
-        });
-        */
+      await setDoc(doc(db, "choreschedule", data.Chore), {
+        Status: "Not Scheduled",
+        AssignedTo: data.AssignedTo,
+      });
     } catch (error) {
       alert("Error adding data to Database: " + error);
     }
@@ -123,7 +122,7 @@ const ChoreScheduleConfigList = () => {
         ref={(g) => (grid = g)}
       >
         <ColumnsDirective>
-          {choresScheduleGrid.map((item, index) => (
+          {choresListSelectionGrid.map((item, index) => (
             <ColumnDirective key={item.id} {...item} />
           ))}
         </ColumnsDirective>
