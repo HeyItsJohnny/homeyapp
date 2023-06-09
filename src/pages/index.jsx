@@ -1,13 +1,13 @@
 export { default as Dashboard } from './Dashboard';
 export { default as Calendar } from './Calendar';
-export { default as Chores } from './Chores/Chores';
+export { default as ChoreSchedule } from './Chores/ChoreSchedule';
 export { default as ChoresList } from './Chores/ChoresList';
 export { default as ChoresConfig } from './Chores/ChoresConfig';
 export { default as ColorPicker } from './ColorPicker';
 export { default as FamilyMembers } from './FamilyMembers';
 export { default as MealScheduler} from './Meals/MealScheduler';
 export { default as MealSchedulerConfig} from './Meals/MealSchedulerConfig';
-export { default as FamilyMeals} from './FamilyMeals';
+export { default as FamilyMeals} from './Meals/FamilyMeals';
 export { default as Planner } from './Planner';
 export { default as Scheduler } from './Scheduler';
 export { default as SharedLogins } from './SharedLogins';

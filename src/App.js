@@ -7,7 +7,7 @@ import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
 import {
   Dashboard,
   Calendar,
-  Chores,
+  ChoreSchedule,
   Ecommerce,
   ColorPicker,
   ChoresConfig,
@@ -80,7 +80,7 @@ function App() {
 
                 {/* PAGES & APPS */}
                 <Route path="/calendar" element={<Calendar />} />
-                <Route path="/chores" element={<Chores />} />
+                <Route path="/chore-schedule" element={<ChoreSchedule />} />
                 <Route path="/chores-config" element={<ChoresConfig />} />
                 <Route path="/chores-list" element={<ChoresList />} />
                 <Route path="/color-picker" element={<ColorPicker />} />

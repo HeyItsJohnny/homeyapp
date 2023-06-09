@@ -11,11 +11,11 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { familyMealsGrid } from "../data/gridData";
-import { Header } from "../components";
-import NewMealModal from "../modals/NewMealModal";
+import { familyMealsGrid } from "../../data/gridData";
+import { Header } from "../../components";
+import NewMealModal from "../../modals/NewMealModal";
 
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import {
   collection,
   query,

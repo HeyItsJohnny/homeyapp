@@ -49,9 +49,9 @@ export const links = [
     title: "Chores",
     links: [
       {
-        name: "chores",
+        name: "chore schedule",
         icon: <MdCleaningServices />,
-        linktoname: "chores",
+        linktoname: "chore-schedule",
       },
       {
         name: "chores config.",

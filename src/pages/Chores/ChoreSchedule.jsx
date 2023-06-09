@@ -14,7 +14,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const Chores = () => {
+const ChoreSchedule = () => {
   const [choreSchedule, setChoreSchedule] = useState([]);
 
   const fetchData = async () => {
@@ -92,4 +92,4 @@ const Chores = () => {
   );
 };
 
-export default Chores;
+export default ChoreSchedule;
