@@ -31,8 +31,7 @@ const ChoresConfig = () => {
 
   const fetchData = async () => {
     const docCollection = query(
-      collection(db, "choreschedule"),
-      where("Status", "==", "Not Started")
+      collection(db, "choreschedule")
     );
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
@@ -71,7 +70,7 @@ const ChoresConfig = () => {
     <>
       <ChoreScheduleConfigList />
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Chores" title="Chores Not Started" />
+      <Header category="Chores" title="Chores in Schedule" />
       <GridComponent
         id="gridcomp"
         dataSource={choreSchedule}

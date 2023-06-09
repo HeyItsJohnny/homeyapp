@@ -17,7 +17,6 @@ import {
 } from "firebase/firestore";
 
 const MealScheduler = () => {
-  let previousValue;
   const [mealSchedule, setMealSchedule] = useState([]);
 
   const fetchData = async () => {

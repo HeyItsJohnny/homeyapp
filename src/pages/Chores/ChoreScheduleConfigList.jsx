@@ -82,8 +82,18 @@ const ChoreScheduleConfigList = () => {
 
   const addToScheduler = async (data) => {
     try {
+      console.log(data);
+      const Frequency = data.Frequency;
+      var DocStatus = "";
+
+      if (Frequency === "Daily") {
+        DocStatus = "Daily Chores"
+      } else {
+        DocStatus = "Not Started"
+      }
+
       await setDoc(doc(db, "choreschedule", data.Chore), {
-        Status: "Not Started",
+        Status: DocStatus,
         AssignedTo: data.AssignedTo,
       });
     } catch (error) {
