@@ -11,11 +11,11 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { choresListGrid } from "../data/gridData";
-import { Header } from "../components";
-import NewChoreModal from "../modals/NewChoreModal";
+import { choresListGrid } from "../../data/gridData";
+import { Header } from "../../components";
+import NewChoreModal from "../../modals/NewChoreModal";
 
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import {
   collection,
   query,

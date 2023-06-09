@@ -3,9 +3,9 @@ import {
   KanbanComponent,
 } from "@syncfusion/ej2-react-kanban";
 
-import { Header } from "../components";
+import { Header } from "../../components";
 
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 
 import {
   collection,

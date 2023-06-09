@@ -11,11 +11,11 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { choresScheduleGrid } from "../data/gridData";
-import { Header } from "../components";
-import { ChoreScheduleConfigList } from "../components";
+import { choresScheduleGrid } from "../../data/gridData";
+import { Header } from "../../components";
+import  ChoreScheduleConfigList  from "./ChoreScheduleConfigList";
 
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import {
   collection,
   query,
@@ -32,7 +32,7 @@ const ChoresConfig = () => {
   const fetchData = async () => {
     const docCollection = query(
       collection(db, "choreschedule"),
-      where("Status", "==", "Not Scheduled")
+      where("Status", "==", "Not Started")
     );
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
@@ -71,7 +71,7 @@ const ChoresConfig = () => {
     <>
       <ChoreScheduleConfigList />
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Chores" title="Not Scheduled Chores" />
+      <Header category="Chores" title="Chores Not Started" />
       <GridComponent
         id="gridcomp"
         dataSource={choreSchedule}

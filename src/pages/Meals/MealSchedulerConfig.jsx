@@ -11,11 +11,11 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { mealScheduleGrid } from "../data/gridData";
-import { Header } from "../components";
-import { MealSchedulerConfigMealList } from "../components";
+import { mealScheduleGrid } from "../../data/gridData";
+import { Header } from "../../components";
+import MealSchedulerConfigMealList from "./MealSchedulerConfigMealList"
 
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import {
   collection,
   query,

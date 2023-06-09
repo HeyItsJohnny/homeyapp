@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useStateContext } from "../contexts/ContextProvider";
+import { useStateContext } from "../../contexts/ContextProvider";
 import {
   GridComponent,
   ColumnsDirective,
@@ -13,10 +13,10 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { choresListSelectionGrid } from "../data/gridData";
-import { Header } from "../components";
+import { choresListSelectionGrid } from "../../data/gridData";
+import { Header } from "../../components";
 
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import {
   collection,
   query,
@@ -26,7 +26,6 @@ import {
   setDoc,
   addDoc,
 } from "firebase/firestore";
-import { blue } from "@mui/material/colors";
 
 const ChoreScheduleConfigList = () => {
   let grid;
@@ -84,7 +83,7 @@ const ChoreScheduleConfigList = () => {
   const addToScheduler = async (data) => {
     try {
       await setDoc(doc(db, "choreschedule", data.Chore), {
-        Status: "Not Scheduled",
+        Status: "Not Started",
         AssignedTo: data.AssignedTo,
       });
     } catch (error) {

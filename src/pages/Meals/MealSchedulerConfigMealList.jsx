@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useStateContext } from "../contexts/ContextProvider";
+import { useStateContext } from "../../contexts/ContextProvider";
 import {
   GridComponent,
   ColumnsDirective,
@@ -13,10 +13,10 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { familyMealsSelectionGrid } from "../data/gridData";
-import { Header } from "../components";
+import { familyMealsSelectionGrid } from "../../data/gridData";
+import { Header } from "../../components";
 
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import {
   collection,
   query,
