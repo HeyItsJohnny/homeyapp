@@ -11,9 +11,8 @@ import {
 } from "@syncfusion/ej2-react-grids";
 
 //DATA
-import { choresListGrid } from "../../data/gridData";
+import { familyPlansGrid } from "../../data/gridData";
 import { Header } from "../../components";
-import NewChoreModal from "../../modals/NewChoreModal";
 
 import { db } from "../../firebase/firebase";
 import {
@@ -24,58 +23,65 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const ChoresList = () => {
-  const [chores, setChores] = useState([]);
+import NewPlanModal from "../../modals/NewPlanModal";
+import { useNavigate } from 'react-router-dom';
+
+const Planner = () => {
+  const navigate = useNavigate();
+  const [familyPlans, setFamilyPlans] = useState([]);
 
   const fetchData = async () => {
     const docCollection = query(
-      collection(db, "chores")
+      collection(db, "familyplans")
+      //orderBy("Name")
     );
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
       querySnapshot.forEach((doc) => {
-        const formattedDate = `${(doc.data().LastUpdated.toDate().getMonth() + 1)
-          .toString()
-          .padStart(2, '0')}/${doc.data().LastUpdated.toDate().getDate().toString().padStart(2, '0')}/${doc.data().LastUpdated.toDate().getFullYear()}`;
         var data = {
           id: doc.id,
-          Chore: doc.id,
-          AssignedTo: doc.data().AssignedTo,
-          Frequency: doc.data().Frequency,
-          LastUpdated: formattedDate
+          PlanName: doc.data().PlanName,
+          StartDate: doc.data().StartDate,
+          EndDate: doc.data().EndDate,
         };
         list.push(data);
       });
-      setChores(list);
+      setFamilyPlans(list);
     });
   };
+
+  function handleDoubleClick(args) {
+    //alert(args.rowData.id);
+    navigate("/plandetails/" + args.rowData.id);
+  }
 
   const handleActionComplete = async (args) => {
     if (args.requestType === "delete") {
       const deletedRow = args.data[0];
       try {
-        await deleteDoc(doc(db, "chores", deletedRow.id));
+        await deleteDoc(doc(db, "familyplans", deletedRow.id));
       } catch (error) {
         alert("Error deleting data from Firestore:", error);
       }
     }
   };
+
   useEffect(() => {
     fetchData();
     return () => {
-      setChores([]); // This worked for me
+      setFamilyPlans([]); 
     };
   }, []);
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Chores" title="Chore List" />
+      <Header category="Plans" title="Family Plans" />
       <div className="mb-10">
-        <NewChoreModal />
+        <NewPlanModal />
       </div>
       <GridComponent
         id="gridcomp"
-        dataSource={chores}
+        dataSource={familyPlans}
         actionComplete={handleActionComplete}
         allowPaging
         allowSorting
@@ -84,9 +90,10 @@ const ChoresList = () => {
           allowDeleting: true,
         }}
         width="auto"
+        recordDoubleClick={handleDoubleClick}
       >
         <ColumnsDirective>
-          {choresListGrid.map((item, index) => (
+          {familyPlansGrid.map((item, index) => (
             <ColumnDirective key={item.id} {...item} />
           ))}
         </ColumnsDirective>
@@ -96,4 +103,4 @@ const ChoresList = () => {
   );
 };
 
-export default ChoresList;
+export default Planner;

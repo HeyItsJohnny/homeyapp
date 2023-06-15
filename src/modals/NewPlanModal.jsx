@@ -5,44 +5,36 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import TextField from "@mui/material/TextField";
 import DialogTitle from "@mui/material/DialogTitle";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-
 import { db } from "../firebase/firebase";
-import { setDoc, doc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 
-const NewMealModal = () => {
+const NewPlanModal = () => {
   const [show, setShow] = useState(false);
-  const [foodType, setFoodType] = useState("");
+  //const [foodType, setFoodType] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const { currentColor } = useStateContext();
 
-  const handleFoodTypeChange = (event) => {
-    setFoodType(event.target.value);
-  };
-
   const handleReset = () => {
-    setFoodType("");
+    //setFoodType("");
     handleClose();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    addRecipeDoc(e);
+    addPlanDoc(e);
     handleReset();
   };
 
-  async function addRecipeDoc(data) {
+  async function addPlanDoc(data) {
     try {
-      await setDoc(doc(db, "familymeals", data.target.Meal.value), {
-        Description: data.target.Description.value,
-        FoodType: foodType,
+      const docRef = await addDoc(collection(db, "familyplans"), {
+        PlanName: data.target.PlanName.value,
+        StartDate: data.target.StartDate.value,
+        EndDate: data.target.EndDate.value,
       });
     } catch (error) {
       alert("There was an error adding to the database: " + error);
@@ -61,47 +53,40 @@ const NewMealModal = () => {
         className={`text-md p-3 hover:drop-shadow-xl`}
         onClick={handleShow}
       >
-        Add New Meal
+        Add New Plan
       </button>
       <Dialog open={show} onClose={handleReset}>
         <form onSubmit={handleSubmit}>
-          <DialogTitle>New Family Meal</DialogTitle>
+          <DialogTitle>New Plan</DialogTitle>
           <DialogContent>
             <TextField
               autoFocus
               required
               margin="dense"
-              id="Meal"
-              label="Meal"
+              id="PlanName"
+              label="Plan Name"
               type="text"
+              fullWidth
+              variant="standard"
+            />
+            
+            <TextField
+              margin="none"
+              id="StartDate"
+              label="Start Date"
+              type="date"
               fullWidth
               variant="standard"
             />
             <TextField
               margin="dense"
-              id="Description"
-              label="Description"
-              type="text"
+              id="EndDate"
+              label="End Date"
+              type="date"
               fullWidth
               variant="standard"
             />
-          </DialogContent>
-          <DialogContent>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Food Type</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={foodType}
-                label="Food Type"
-                onChange={handleFoodTypeChange}
-                required
-              >
-                <MenuItem value="Breakfast">Breakfast</MenuItem>
-                <MenuItem value="Lunch">Lunch</MenuItem>
-                <MenuItem value="Dinner">Dinner</MenuItem>
-              </Select>
-            </FormControl>
+            
           </DialogContent>
           <DialogActions>
             <button
@@ -122,4 +107,4 @@ const NewMealModal = () => {
   );
 };
 
-export default NewMealModal;
+export default NewPlanModal;

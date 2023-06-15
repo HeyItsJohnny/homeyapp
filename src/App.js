@@ -17,6 +17,7 @@ import {
   MealScheduler,
   MealSchedulerConfig,
   Planner,
+  PlanDetails,
   Scheduler,
   SharedLogins,
   Line,
@@ -89,6 +90,7 @@ function App() {
                 <Route path="/meal-scheduler" element={<MealScheduler />} />
                 <Route path="/meal-scheduler-config" element={<MealSchedulerConfig />} />
                 <Route path="/planner" element={<Planner />} />
+                <Route path="/plandetails/:planid" element={<PlanDetails />} />
                 <Route path="/scheduler" element={<Scheduler />} />
                 <Route path="/shared-logins" element={<SharedLogins />} />
 
