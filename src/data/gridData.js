@@ -67,8 +67,8 @@ export const choresScheduleGrid = [
 
 export const familyPlansGrid = [
   { field: "PlanName", headerText: "Plans", width: "150", textAlign: "Center" },
-  { field: "StartDate", headerText: "Start Date", width: "150", textAlign: "Center" },
-  { field: "EndDate", headerText: "End Date", width: "150", textAlign: "Center" },
+  //{ field: "StartDate", headerText: "Start Date", width: "150", textAlign: "Center" },
+  //{ field: "EndDate", headerText: "End Date", width: "150", textAlign: "Center" },
 ];
 
 export const familyMembersGrid = [

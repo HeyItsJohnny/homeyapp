@@ -24,7 +24,9 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-import NewPlanModal from "../../modals/NewPlanModal";
+//import NewPlanModal from "../../modals/NewPlanModal";
+import PlanSchedule from "./PlanSchedule";
+
 import { useParams } from "react-router-dom";
 
 const PlanDetails = () => {
@@ -39,7 +41,7 @@ const PlanDetails = () => {
         setPlan(docSnap.data());
       }
     } catch (err) {
-        alert(err);
+      alert(err);
     }
   };
 
@@ -51,10 +53,20 @@ const PlanDetails = () => {
   }, []);
 
   return (
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Plan Details" title={plan.PlanName} />
-      <div className="mb-10"></div>
-    </div>
+    <>
+      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+        <Header category="Plan Details" title={plan.PlanName} />
+        <div className="mb-10">
+          
+        </div>
+      </div>
+      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+      <Header category="Plan Details" title="Schedule" />
+        <div className="mb-10">
+          <PlanSchedule planid={planid}/>
+        </div>
+      </div>
+    </>
   );
 };
 

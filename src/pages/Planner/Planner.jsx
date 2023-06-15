@@ -21,10 +21,11 @@ import {
   onSnapshot,
   doc,
   deleteDoc,
+  orderBy,
 } from "firebase/firestore";
 
 import NewPlanModal from "../../modals/NewPlanModal";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Planner = () => {
   const navigate = useNavigate();
@@ -32,17 +33,15 @@ const Planner = () => {
 
   const fetchData = async () => {
     const docCollection = query(
-      collection(db, "familyplans")
-      //orderBy("Name")
+      collection(db, "familyplans"),
+      orderBy("PlanName")
     );
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach((doc) => {        
         var data = {
           id: doc.id,
-          PlanName: doc.data().PlanName,
-          StartDate: doc.data().StartDate,
-          EndDate: doc.data().EndDate,
+          PlanName: doc.data().PlanName
         };
         list.push(data);
       });
@@ -69,7 +68,7 @@ const Planner = () => {
   useEffect(() => {
     fetchData();
     return () => {
-      setFamilyPlans([]); 
+      setFamilyPlans([]);
     };
   }, []);
 

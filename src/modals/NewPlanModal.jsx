@@ -33,8 +33,8 @@ const NewPlanModal = () => {
     try {
       const docRef = await addDoc(collection(db, "familyplans"), {
         PlanName: data.target.PlanName.value,
-        StartDate: data.target.StartDate.value,
-        EndDate: data.target.EndDate.value,
+        //StartDate: new Date(data.target.StartDate.value),
+        //EndDate: new Date(data.target.EndDate.value),
       });
     } catch (error) {
       alert("There was an error adding to the database: " + error);
@@ -70,6 +70,7 @@ const NewPlanModal = () => {
               variant="standard"
             />
             
+            {/*
             <TextField
               margin="none"
               id="StartDate"
@@ -86,6 +87,7 @@ const NewPlanModal = () => {
               fullWidth
               variant="standard"
             />
+            */}
             
           </DialogContent>
           <DialogActions>

@@ -14,9 +14,7 @@ import {
 } from "@syncfusion/ej2-react-schedule";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
 
-import { Header } from "../components";
-
-import { db } from "../firebase/firebase";
+import { db } from "../../firebase/firebase";
 import {
   collection,
   query,
@@ -27,11 +25,13 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const Calendar = () => {
-  const [calendarEvents, setCalendarEvents] = useState([]);
+const PlanSchedule = ({ planid }) => {
+  const [planCalendarEvents, setPlanCalendarEvents] = useState([]);
 
   const fetchData = async () => {
-    const docCollection = query(collection(db, "calendarevents"));
+    const docCollection = query(
+      collection(db, "familyplans", planid, "calendarevents")
+    );
     onSnapshot(docCollection, (querySnapshot) => {
       const list = [];
       const IDLogger = 1;
@@ -46,30 +46,33 @@ const Calendar = () => {
           IsAllDay: doc.data().IsAllDay,
           RecurrenceRule: doc.data().RecurrenceRule,
           RecurrenceException: doc.data().RecurrenceException,
-          Color: 'red',
+          Color: "red",
           EventColor: doc.data().EventColor,
         };
         list.push(data);
       });
-      setCalendarEvents(list);
+      setPlanCalendarEvents(list);
     });
   };
 
   const addEvent = async (args) => {
     if (args.requestType === "eventCreated") {
       try {
-        const docRef = await addDoc(collection(db, "calendarevents"), {
-          Subject: args.addedRecords[0].Subject,
-          Location: args.addedRecords[0].Location ?? "",
-          Description: args.addedRecords[0].Description ?? "",
-          StartTime: args.addedRecords[0].StartTime ?? "",
-          EndTime: args.addedRecords[0].EndTime ?? "",
-          IsAllDay: args.addedRecords[0].IsAllDay ?? "",
-          RecurrenceRule: args.addedRecords[0].RecurrenceRule ?? "",
-          RecurrenceException: args.addedRecords[0].RecurrenceException ?? "",
-          CategoryColor: args.addedRecords[0].CategoryColor ?? "",
-          EventColor: args.addedRecords[0].EventColor ?? "",
-        });
+        const docRef = await addDoc(
+          collection(db, "familyplans", planid, "calendarevents"),
+          {
+            Subject: args.addedRecords[0].Subject,
+            Location: args.addedRecords[0].Location ?? "",
+            Description: args.addedRecords[0].Description ?? "",
+            StartTime: args.addedRecords[0].StartTime ?? "",
+            EndTime: args.addedRecords[0].EndTime ?? "",
+            IsAllDay: args.addedRecords[0].IsAllDay ?? "",
+            RecurrenceRule: args.addedRecords[0].RecurrenceRule ?? "",
+            RecurrenceException: args.addedRecords[0].RecurrenceException ?? "",
+            CategoryColor: args.addedRecords[0].CategoryColor ?? "",
+            EventColor: args.addedRecords[0].EventColor ?? "",
+          }
+        );
       } catch (error) {
         alert("Error adding data to Database: " + error);
       }
@@ -77,6 +80,8 @@ const Calendar = () => {
       try {
         const calendarEventsRef = doc(
           db,
+          "familyplans",
+          planid,
           "calendarevents",
           args.changedRecords[0].Id
         );
@@ -97,7 +102,15 @@ const Calendar = () => {
       }
     } else if (args.requestType === "eventRemoved") {
       try {
-        await deleteDoc(doc(db, "calendarevents", args.deletedRecords[0].Id));
+        await deleteDoc(
+          doc(
+            db,
+            "familyplans",
+            planid,
+            "calendarevents",
+            args.deletedRecords[0].Id
+          )
+        );
       } catch (error) {
         alert("Error deleting data from Database: " + error);
       }
@@ -107,18 +120,18 @@ const Calendar = () => {
   useEffect(() => {
     fetchData();
     return () => {
-      setCalendarEvents([]); // This worked for me
+      setPlanCalendarEvents([]);
     };
   }, []);
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="App" title="Calendar" />
       <ScheduleComponent
-        currentView="Week"
+        currentView="Day"
         height="650px"
-        eventSettings={{ dataSource: calendarEvents }}
+        eventSettings={{ dataSource: planCalendarEvents }}
         actionComplete={addEvent}
+        selectedDate={new Date(2023, 5, 17)}
       >
         <Inject
           services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}
@@ -128,4 +141,4 @@ const Calendar = () => {
   );
 };
 
-export default Calendar;
+export default PlanSchedule;
