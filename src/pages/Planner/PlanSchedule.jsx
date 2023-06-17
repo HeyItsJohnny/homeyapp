@@ -25,7 +25,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 
-const PlanSchedule = ({ planid }) => {
+const PlanSchedule = ({ planid, planstartdate, planenddate }) => {
   const [planCalendarEvents, setPlanCalendarEvents] = useState([]);
 
   const fetchData = async () => {
