@@ -10,7 +10,6 @@ import { addDoc, collection } from "firebase/firestore";
 
 const NewPlanModal = () => {
   const [show, setShow] = useState(false);
-  //const [foodType, setFoodType] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -18,7 +17,6 @@ const NewPlanModal = () => {
   const { currentColor } = useStateContext();
 
   const handleReset = () => {
-    //setFoodType("");
     handleClose();
   };
 
@@ -33,8 +31,8 @@ const NewPlanModal = () => {
     try {
       const docRef = await addDoc(collection(db, "familyplans"), {
         PlanName: data.target.PlanName.value,
-        //StartDate: new Date(data.target.StartDate.value),
-        //EndDate: new Date(data.target.EndDate.value),
+        StartDate: data.target.StartDate.value,
+        EndDate: data.target.EndDate.value,
       });
     } catch (error) {
       alert("There was an error adding to the database: " + error);
@@ -69,9 +67,8 @@ const NewPlanModal = () => {
               fullWidth
               variant="standard"
             />
-            
-            {/*
             <TextField
+              required
               margin="none"
               id="StartDate"
               label="Start Date"
@@ -80,6 +77,7 @@ const NewPlanModal = () => {
               variant="standard"
             />
             <TextField
+              required
               margin="dense"
               id="EndDate"
               label="End Date"
@@ -87,8 +85,6 @@ const NewPlanModal = () => {
               fullWidth
               variant="standard"
             />
-            */}
-            
           </DialogContent>
           <DialogActions>
             <button

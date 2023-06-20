@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   ScheduleComponent,
-  ViewsDirective,
-  ViewDirective,
   Day,
   Week,
   WorkWeek,
@@ -12,8 +10,10 @@ import {
   Resize,
   DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
-import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
-import { parseISO, format } from 'date-fns';
+import { parseISO } from "date-fns";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+import { Box, TextField } from "@mui/material";
 
 import { db } from "../../firebase/firebase";
 import {
@@ -24,13 +24,36 @@ import {
   updateDoc,
   doc,
   deleteDoc,
+  getDoc,
 } from "firebase/firestore";
 
-const PlanSchedule = ({ planid, planstartdate, planenddate }) => {
+const PlanSchedule = ({ planid }) => {
   const [planCalendarEvents, setPlanCalendarEvents] = useState([]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [calendarView, setCalendarView] = useState("Week");
-  const [calendarDate, setCalendarDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedStartDate, setSelectedStartDate] = useState(new Date());
+  const isNonMobile = useMediaQuery("(min-width:600px)");
+  const [plan, setPlan] = useState({});
+
+  //Fetch Data -
+  const fetchPlan = async () => {
+    try {
+      const docRef = doc(db, "familyplans", planid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setPlan(docSnap.data());
+        setStartDate(docSnap.data().StartDate);
+        setEndDate(docSnap.data().EndDate);
+        setCalendarViewComponents(
+          docSnap.data().StartDate,
+          docSnap.data().EndDate
+        );
+      }
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   const fetchData = async () => {
     const docCollection = query(
@@ -58,7 +81,9 @@ const PlanSchedule = ({ planid, planstartdate, planenddate }) => {
       setPlanCalendarEvents(list);
     });
   };
+  //Fetch Data +
 
+  //Event Functions -
   const addEvent = async (args) => {
     if (args.requestType === "eventCreated") {
       try {
@@ -120,38 +145,113 @@ const PlanSchedule = ({ planid, planstartdate, planenddate }) => {
       }
     }
   };
+  //Event Functions +
 
-  const setCalendarViewComponents = () => {
-    if (planstartdate === planenddate) {
+  const setCalendarViewComponents = (startDate, endDate) => {
+    if (startDate === endDate) {
       setCalendarView("Day");
     } else {
       setCalendarView("Week");
     }
-    setCalendarDate(parseISO(planstartdate));
-  }
+
+    setSelectedStartDate(parseISO(startDate));
+  };
+
+  //Start & End Dates -
+  const onChangeStartDate = (args) => {
+    setStartDate(args.target.value);
+    setCalendarViewComponents(args.target.value, endDate);
+    updateStartDate(args.target.value);
+  };
+
+  const onChangeEndDate = (args) => {
+    setEndDate(args.target.value);
+    setCalendarViewComponents(startDate, args.target.value);
+    updateEndDate(args.target.value);
+  };
+
+  const updateStartDate = async (start) => {
+    try {
+      const familyPlansRef = doc(db, "familyplans", planid);
+      await updateDoc(familyPlansRef, {
+        StartDate: start,
+      });
+    } catch (error) {
+      alert("Error editing data to Database: " + error);
+    }
+  };
+
+  const updateEndDate = async (end) => {
+    try {
+      const familyPlansRef = doc(db, "familyplans", planid);
+      await updateDoc(familyPlansRef, {
+        EndDate: end,
+      });
+    } catch (error) {
+      alert("Error editing data to Database: " + error);
+    }
+  };
+  //Start & End Dates +
 
   useEffect(() => {
+    fetchPlan();
     fetchData();
-    setCalendarViewComponents();
     return () => {
       setPlanCalendarEvents([]);
     };
   }, []);
 
   return (
-    <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <ScheduleComponent
-        currentView={calendarView}
-        height="650px"
-        eventSettings={{ dataSource: planCalendarEvents }}
-        actionComplete={addEvent}
-        selectedDate={selectedDate || new Date()}
+    <>
+      <Box
+        display="grid"
+        gap="30px"
+        gridTemplateColumns="repeat(4, minmax(0, 1fr))"
+        sx={{
+          "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
+        }}
       >
-        <Inject
-          services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}
+        <TextField
+          InputLabelProps={{ shrink: true }}
+          margin="dense"
+          required
+          id="StartDate"
+          label="Start Date"
+          type="date"
+          fullWidth
+          variant="filled"
+          value={startDate}
+          onChange={onChangeStartDate}
+          sx={{ gridColumn: "span 2" }}
         />
-      </ScheduleComponent>
-    </div>
+        <TextField
+          InputLabelProps={{ shrink: true }}
+          margin="dense"
+          required
+          id="EndDate"
+          label="End Date"
+          type="date"
+          fullWidth
+          variant="filled"
+          value={endDate}
+          onChange={onChangeEndDate}
+          sx={{ gridColumn: "span 2" }}
+        />
+      </Box>
+      <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
+        <ScheduleComponent
+          currentView={calendarView}
+          height="650px"
+          eventSettings={{ dataSource: planCalendarEvents }}
+          actionComplete={addEvent}
+          selectedDate={selectedStartDate || new Date()}
+        >
+          <Inject
+            services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}
+          />
+        </ScheduleComponent>
+      </div>
+    </>
   );
 };
 
