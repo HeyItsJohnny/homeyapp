@@ -29,7 +29,7 @@ import { db } from "../../firebase/firebase";
 import {
   collection,
   query,
-  onSnapshot,
+  updateDoc,
   doc,
   getDoc,
   deleteDoc,
@@ -54,8 +54,8 @@ const PlanDetails = () => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         setPlan(docSnap.data());
-        //Set Start Date
-        //Set End Date
+        setStartDate(docSnap.data().StartDate);
+        setEndDate(docSnap.data().EndDate);
       }
     } catch (err) {
       alert(err);
@@ -63,16 +63,37 @@ const PlanDetails = () => {
   };
 
   const onChangeStartDate = (args) => {
-    
     setStartDate(args.target.value);
-    //const dateString = args.target.value;
-    //const date = parseISO(dateString);
-    //alert(date);
+    updateStartDate(args.target.value);
+
   }
 
   const onChangeEndDate = (args) => {
     setEndDate(args.target.value);
+    updateEndDate(args.target.value);
   }
+
+  const updateStartDate = async (start) => {
+    try {
+      const familyPlansRef = doc(db, "familyplans", planid);
+      await updateDoc(familyPlansRef, {
+        StartDate: start
+      });
+    } catch (error) {
+      alert("Error editing data to Database: " + error);
+    }
+  };
+
+  const updateEndDate = async (end) => {
+    try {
+      const familyPlansRef = doc(db, "familyplans", planid);
+      await updateDoc(familyPlansRef, {
+        EndDate: end
+      });
+    } catch (error) {
+      alert("Error editing data to Database: " + error);
+    }
+  };
 
   useEffect(() => {
     setPlanFromURL();

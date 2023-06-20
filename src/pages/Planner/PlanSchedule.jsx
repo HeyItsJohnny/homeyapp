@@ -13,6 +13,7 @@ import {
   DragAndDrop,
 } from "@syncfusion/ej2-react-schedule";
 import { DatePickerComponent } from "@syncfusion/ej2-react-calendars";
+import { parseISO, format } from 'date-fns';
 
 import { db } from "../../firebase/firebase";
 import {
@@ -27,6 +28,9 @@ import {
 
 const PlanSchedule = ({ planid, planstartdate, planenddate }) => {
   const [planCalendarEvents, setPlanCalendarEvents] = useState([]);
+  const [calendarView, setCalendarView] = useState("Week");
+  const [calendarDate, setCalendarDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const fetchData = async () => {
     const docCollection = query(
@@ -117,8 +121,18 @@ const PlanSchedule = ({ planid, planstartdate, planenddate }) => {
     }
   };
 
+  const setCalendarViewComponents = () => {
+    if (planstartdate === planenddate) {
+      setCalendarView("Day");
+    } else {
+      setCalendarView("Week");
+    }
+    setCalendarDate(parseISO(planstartdate));
+  }
+
   useEffect(() => {
     fetchData();
+    setCalendarViewComponents();
     return () => {
       setPlanCalendarEvents([]);
     };
@@ -127,11 +141,11 @@ const PlanSchedule = ({ planid, planstartdate, planenddate }) => {
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
       <ScheduleComponent
-        currentView="Day"
+        currentView={calendarView}
         height="650px"
         eventSettings={{ dataSource: planCalendarEvents }}
         actionComplete={addEvent}
-        selectedDate={new Date(2023, 5, 17)}
+        selectedDate={selectedDate || new Date()}
       >
         <Inject
           services={[Day, Week, WorkWeek, Month, Agenda, Resize, DragAndDrop]}

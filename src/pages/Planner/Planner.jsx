@@ -48,7 +48,7 @@ const Planner = () => {
       setFamilyPlans(list);
     });
   };
-
+  
   function handleDoubleClick(args) {
     //alert(args.rowData.id);
     navigate("/plandetails/" + args.rowData.id);
