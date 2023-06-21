@@ -34,7 +34,7 @@ export const links = [
         linktoname: "calendar",
       },
       {
-        name: "planner",
+        name: "family plans",
         icon: <BsCalendarCheck />,
         linktoname: "planner",
       },

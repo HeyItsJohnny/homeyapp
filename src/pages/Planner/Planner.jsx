@@ -25,6 +25,7 @@ import {
 } from "firebase/firestore";
 
 import NewPlanModal from "../../modals/NewPlanModal";
+
 import { useNavigate } from "react-router-dom";
 
 const Planner = () => {
@@ -41,7 +42,9 @@ const Planner = () => {
       querySnapshot.forEach((doc) => {        
         var data = {
           id: doc.id,
-          PlanName: doc.data().PlanName
+          PlanName: doc.data().PlanName,
+          StartDate: doc.data().StartDate,
+          EndDate: doc.data().EndDate
         };
         list.push(data);
       });
