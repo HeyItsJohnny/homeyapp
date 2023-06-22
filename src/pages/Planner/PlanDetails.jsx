@@ -34,6 +34,7 @@ import {
 //import NewPlanModal from "../../modals/NewPlanModal";
 import PlanSchedule from "./PlanSchedule";
 import PlanKanban from "./PlanKanban";
+import NewPlanKanban from "../../modals/NewPlanKanban";
 import { useParams } from "react-router-dom";
 
 const PlanDetails = () => {
@@ -65,6 +66,9 @@ const PlanDetails = () => {
     <>
       <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
         <Header category="Plan Details" title={plan.PlanName} />
+        <div className="mb-10">
+          <NewPlanKanban planid={planid} />
+        </div>
         <div className="mb-10">
           <PlanKanban planid={planid} />
         </div>

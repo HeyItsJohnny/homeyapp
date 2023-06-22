@@ -119,6 +119,5 @@ export const weekendMealScheduleKanbanGrid = [
 
 export const PlanKanbanGrid = [
   { headerText: 'To Do', keyField: 'ToDo', allowToggle: true },
-  { headerText: 'In Progress',keyField: 'InProgress', allowToggle: true },
   { headerText: 'Completed', keyField: 'Completed',allowToggle: true },
 ];
