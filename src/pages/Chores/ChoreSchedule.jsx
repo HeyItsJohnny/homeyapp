@@ -73,21 +73,21 @@ const ChoreSchedule = () => {
   const resetSchedule = () => {
     choreSchedule.forEach((chore) => {
       if (chore.Status !== "Daily Chores") {
-        changeStatus(chore,"Not Started");
+        changeStatus(chore, "Not Started");
       }
-    })
-  }
+    });
+  };
 
-  const changeStatus = async (chore,newStatus) => {
+  const changeStatus = async (chore, newStatus) => {
     try {
-      const choreScheduleRef = doc(db,"choreschedule",chore.Id);
+      const choreScheduleRef = doc(db, "choreschedule", chore.Id);
       await updateDoc(choreScheduleRef, {
         Status: newStatus,
       });
     } catch (error) {
       alert("Error changing status to Database: " + error);
     }
-  }
+  };
 
   return (
     <>
